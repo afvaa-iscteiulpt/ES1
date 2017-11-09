@@ -1,9 +1,19 @@
-IdentificaÃ§Ã£o da turma (ex: EIC1)
+Identificação da turma:
+	LEI-PL
+	EIC2
+	EIC1
+	
+Identificação do grupo:
+	105
 
-IdentificaÃ§Ã£o do grupo (ex: Grupo 2)
+Identificação do número, nome e papel de cada membro do grupo:
+	62109		André Vieira		SCRUM Master
+	61872		Miguel Dias			Developer
+	54002		Miguel Martins		Developer
+	62112		Diogo Pires			Quality Manager
+	
+Identificação da variante do projeto desenvolvida:
+	AntiSpamConfigurationForBalancedProfessionalAndLeisureMailbox
 
-IdentificaÃ§Ã£o do nÃºmero, nome e papel de cada membro do grupo (ex: 12345, JosÃ© Silva, Scrum Master)
-
-IdentificaÃ§Ã£o da variante do projeto desenvolvida (ex: AntiSpamConfigurationForProfessionalMailbox)
-
-Link para um vÃ­deo no youtube com a demonstraÃ§Ã£o da aplicaÃ§Ã£o final desenvolvida (ex: http://...)
+Link para um vídeo no youtube com a demonstração da aplicação final desenvolvida:
+	https://...
