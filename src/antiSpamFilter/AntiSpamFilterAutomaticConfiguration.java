@@ -1,4 +1,6 @@
+/*
 package antiSpamFilter;
+
 
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
@@ -73,3 +75,4 @@ public class AntiSpamFilterAutomaticConfiguration {
   }
 
 }
+*/
