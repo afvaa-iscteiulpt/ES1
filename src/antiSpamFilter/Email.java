@@ -1,13 +1,13 @@
 package antiSpamFilter;
 
-import java.util.HashMap;
-
 public class Email {
 
 	public String fullPath;
 	public String id;
 	public String[] appliedRules;
 	public TypeEmail type = null;
+	public Boolean isFPFN = null;
+	public int currentSum;
 	
 	public Email(TypeEmail type) {
 		this.type = type;
@@ -40,6 +40,32 @@ public class Email {
 
 	public TypeEmail getType() {
 		return type;
+	}
+
+	public void isFPFN(boolean b) {
+		this.isFPFN = b;
+	}
+	
+	public Boolean getIsFPFN() {
+		return this.isFPFN;
+	}
+
+	public int getCurrentSum() {
+		return this.currentSum;
+	}
+	
+	public void setCurrentSum(int currentSum) {
+		this.currentSum = currentSum;
+	}
+
+	public String getAppliedRulesString() {
+		
+		String allRules = "";
+		for (String rule : this.appliedRules) {
+			allRules = allRules + "," + rule;
+		}
+		
+		return allRules;		
 	}
 	
 }

@@ -9,26 +9,26 @@ public class FileEmail extends FileAbstract {
 	public static TypeFile typeFile = TypeFile.EMAIL;
 	public TypeEmail typeEmail;
 	public LinkedList<Email> linkedListEmails = new LinkedList<Email>();
-	
+
 	public FileEmail(TypeEmail typeEmail) {
 		super(typeFile);
-		
+
 		this.typeEmail = typeEmail;
-		
-		if(super.statusFile == StatusFile.APPROVED)
+
+		if (super.statusFile == StatusFile.APPROVED)
 			insertToEmails();
-		else 
+		else
 			resetList();
-		
+
 	}
-	
+
 	public void insertToEmails() {
-		
+
 		String[] columnDetail = null;
-		
-		for(String s : super.allLines) {
+
+		for (String s : super.allLines) {
 			columnDetail = s.split("\t");
-			
+
 			String[] appliedRules = columnDetail;
 
 			Email email = new Email(typeEmail);
@@ -44,58 +44,107 @@ public class FileEmail extends FileAbstract {
 
 			this.linkedListEmails.add(email);
 		}
-	
+
 	}
-	
+
 	public TypeEmail getTypeEmail() {
 		return this.typeEmail;
 	}
-	
+
 	public LinkedList<Email> getLinkedListEmails() {
 		return this.linkedListEmails;
 	}
-	
+
 	public void resetList() {
 		this.linkedListEmails = new LinkedList<Email>();
 	}
-	
+
 	public int calculateFPandFN(HashMap<String, Rule> hmapRules) {
 		int F = 0;
-		
+
 		for (Email email : this.linkedListEmails) {
-            
+
 			String[] appliedRules = email.getAppliedRules();
-			
+
 			int sum = 0;
-			for(String rule : appliedRules) {
-			
+			for (String rule : appliedRules) {
+
 				Rule ruleObj = hmapRules.get(rule);
-				
+
 				int weight = 0;
 				if (ruleObj != null) {
 					weight = hmapRules.get(rule).getRuleWeight();
 				} else {
-					//System.out.println("The follow rule doesn't exist: " + rule);
+					// System.out.println("The follow rule doesn't exist: " + rule);
 				}
 				
 				sum += weight;
 			}
 			
-			if(this.typeEmail == TypeEmail.HAM) {
-				
-				//>5 - FP
-				if(sum > 5) //SPAM
+			email.setCurrentSum(sum);
+
+			if (this.typeEmail == TypeEmail.HAM) {
+
+				// >5 - FP
+				if (sum > 5) {
+					// SPAM
 					F++;
-				
-			} else if(this.typeEmail == TypeEmail.SPAM) {
-				
-				//<5 - FN
-				if(sum <= 5) // NOT SPAM
+					email.isFPFN(true);
+				} else {
+					email.isFPFN(false);
+				}
+
+			} else if (this.typeEmail == TypeEmail.SPAM) {
+
+				// <5 - FN
+				if (sum <= 5) { // NOT SPAM
 					F++;
-				
+					email.isFPFN(true);
+				} else {
+					email.isFPFN(false);
+				}
+
 			}
-			
-        }
+
+		}
 		return F;
+	}
+	
+	public void showTableEmail() {
+		
+		Object[][] data = getDataTable();
+		String[] columns = getColumnsTable();
+		
+		EmailTableGUI emailTableGui = new EmailTableGUI(data, columns);
+		EmailTableGUI.createAndShowGUI(data, columns, typeEmail.toString());
+	}
+
+	public Object[][] getDataTable() {
+
+		Object[][] data = new Object[linkedListEmails.size()][6];
+		int i = 0;
+		for (Email email : this.linkedListEmails) {
+			
+			data[i][0] = typeEmail.toString();
+			data[i][1] = email.getId();
+			data[i][2] = ((email.getIsFPFN() == null) ? "N/A" : email.getIsFPFN());
+			data[i][3] = ((email.getIsFPFN() == null) ? "N/A" : email.getCurrentSum());
+			data[i][4] = email.getAppliedRulesString();
+			data[i][5] = email.getFullPath();
+			
+			i++;
+			
+		}
+		
+		return data;
+		
+	}
+
+	public String[] getColumnsTable() {
+		
+		String[] columnNames = { "Type", "ID", "FP/FN", "Sum", "Rules", "Full Path" };
+
+		return columnNames;
+		
 	}
 }
