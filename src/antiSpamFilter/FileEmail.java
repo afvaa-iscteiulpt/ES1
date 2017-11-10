@@ -119,18 +119,19 @@ public class FileEmail extends FileAbstract {
 		EmailTableGUI.createAndShowGUI(data, columns, typeEmail.toString());
 	}
 
-	public Object[][] getDataTable() {
+	private Object[][] getDataTable() {
 
-		Object[][] data = new Object[linkedListEmails.size()][6];
+		Object[][] data = new Object[linkedListEmails.size()][7];
 		int i = 0;
 		for (Email email : this.linkedListEmails) {
 			
-			data[i][0] = typeEmail.toString();
-			data[i][1] = email.getId();
-			data[i][2] = ((email.getIsFPFN() == null) ? "N/A" : email.getIsFPFN());
-			data[i][3] = ((email.getIsFPFN() == null) ? "N/A" : email.getCurrentSum());
-			data[i][4] = email.getAppliedRulesString();
-			data[i][5] = email.getFullPath();
+			data[i][0] = i+1;
+			data[i][1] = typeEmail.toString();
+			data[i][2] = email.getId();
+			data[i][3] = ((email.getIsFPFN() == null) ? "N/A" : email.getIsFPFN());
+			data[i][4] = ((email.getIsFPFN() == null) ? "N/A" : email.getCurrentSum());
+			data[i][5] = email.getAppliedRulesString();
+			data[i][6] = email.getFullPath();
 			
 			i++;
 			
@@ -140,9 +141,9 @@ public class FileEmail extends FileAbstract {
 		
 	}
 
-	public String[] getColumnsTable() {
+	private String[] getColumnsTable() {
 		
-		String[] columnNames = { "Type", "ID", "FP/FN", "Sum", "Rules", "Full Path" };
+		String[] columnNames = { "#", "Type", "ID", "FP/FN", "Sum", "Rules", "Full Path" };
 
 		return columnNames;
 		
