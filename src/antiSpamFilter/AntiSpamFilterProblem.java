@@ -1,3 +1,4 @@
+/*
 package antiSpamFilter;
 
 import java.util.ArrayList;
@@ -7,7 +8,8 @@ import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
 
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
-
+	
+	  
 	  public AntiSpamFilterProblem() {
 	    // 10 variables (anti-spam filter rules) by default 
 	    this(10);
@@ -52,3 +54,4 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	    solution.setObjective(1, fx[1]);
 	  }
 	}
+	*/
