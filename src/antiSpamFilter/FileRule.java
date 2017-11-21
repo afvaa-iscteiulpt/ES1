@@ -24,17 +24,21 @@ public class FileRule extends FileAbstract {
 	public void insertToRules() {
 
 		String[] columnDetail = null;
-
+		Rule rule = new Rule();
 		for (String line : super.allLines) {
 			columnDetail = line.split("\t");
 
 			String ruleName = columnDetail[0];
-			String ruleWeight = columnDetail[1];
+			String ruleWeight;
+			if (columnDetail.length > 1) {
+				ruleWeight = columnDetail[1];
+				rule.setRuleWeight(Integer.parseInt(ruleWeight));
+			} else {
+				ruleWeight = null;
+			}
 
-			Rule rule = new Rule();
 
 			rule.setRuleName(ruleName);
-			rule.setRuleWeight(Integer.parseInt(ruleWeight));
 
 			this.hmapRules.put(ruleName, rule);
 		}
@@ -57,7 +61,7 @@ public class FileRule extends FileAbstract {
 
 		this.hmapRules.put(ruleName, rule);
 	}
-	
+
 	public void deleteRule(String ruleName) {
 		this.hmapRules.remove(ruleName);
 	}
@@ -75,12 +79,12 @@ public class FileRule extends FileAbstract {
 		BufferedWriter bw = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(tmpFileName));
-			
-			for(Entry<String, Rule> entry : this.hmapRules.entrySet()) {
-			    String key = entry.getKey();
-			    int value = entry.getValue().getRuleWeight();
 
-			    bw.write(key + "\t" + value + "\n");
+			for (Entry<String, Rule> entry : this.hmapRules.entrySet()) {
+				String key = entry.getKey();
+				int value = entry.getValue().getRuleWeight();
+
+				bw.write(key + "\t" + value + "\n");
 			}
 		} catch (Exception e) {
 			return;
@@ -92,22 +96,22 @@ public class FileRule extends FileAbstract {
 				return;
 			}
 		}
-		
+
 		File oldFile = new File(oldFileName);
 		oldFile.delete();
 
 		File newFile = new File(tmpFileName);
 		newFile.renameTo(oldFile);
 	}
-	
+
 	public void applyToRules(String[] rules, int weight) {
 		for (String rule : rules) {
-			
+
 			Rule ruleObj = this.hmapRules.get(rule);
-			
+
 			if (ruleObj != null) {
 				hmapRules.get(rule).setRuleWeight(weight);
-			} 			
+			}
 		}
 	}
 }
