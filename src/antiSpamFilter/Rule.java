@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Rule {
 
 	public String ruleName;
-	public int ruleWeight;
+	public double ruleWeight;
 	
 	public Rule() {
 		
@@ -15,7 +15,7 @@ public class Rule {
 		this.ruleName = ruleName;
 	}
 
-	public void setRuleWeight(int ruleWeight) {
+	public void setRuleWeight(double ruleWeight) {
 		this.ruleWeight = ruleWeight;
 	}
 	
@@ -28,7 +28,7 @@ public class Rule {
 		return ruleName;
 	}
 
-	public int getRuleWeight() {
+	public double getRuleWeight() {
 		return ruleWeight;
 	}
 

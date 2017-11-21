@@ -7,7 +7,7 @@ public class Email {
 	public String[] appliedRules;
 	public TypeEmail type = null;
 	public Boolean isFPFN = null;
-	public int currentSum;
+	public double currentSum;
 	
 	public Email(TypeEmail type) {
 		this.type = type;
@@ -50,11 +50,11 @@ public class Email {
 		return this.isFPFN;
 	}
 
-	public int getCurrentSum() {
+	public double getCurrentSum() {
 		return this.currentSum;
 	}
 	
-	public void setCurrentSum(int currentSum) {
+	public void setCurrentSum(double currentSum) {
 		this.currentSum = currentSum;
 	}
 

@@ -15,7 +15,7 @@ public class FileEmail extends FileAbstract {
 
 		this.typeEmail = typeEmail;
 
-		if (super.statusFile == StatusFile.APPROVED)
+		if (super.getStatusFile() == StatusFile.APPROVED)
 			insertToEmails();
 		else
 			resetList();
@@ -26,7 +26,7 @@ public class FileEmail extends FileAbstract {
 
 		String[] columnDetail = null;
 
-		for (String s : super.allLines) {
+		for (String s : super.getAllLines()) {
 			columnDetail = s.split("\t");
 
 			String[] appliedRules = columnDetail;
@@ -59,19 +59,19 @@ public class FileEmail extends FileAbstract {
 		this.linkedListEmails = new LinkedList<Email>();
 	}
 
-	public int calculateFPandFN(HashMap<String, Rule> hmapRules) {
+	public int calculateFPorFN(HashMap<String, Rule> hmapRules) {
 		int F = 0;
 
 		for (Email email : this.linkedListEmails) {
 
 			String[] appliedRules = email.getAppliedRules();
 
-			int sum = 0;
+			double sum = 0;
 			for (String rule : appliedRules) {
 
 				Rule ruleObj = hmapRules.get(rule);
 
-				int weight = 0;
+				double weight = 0;
 				if (ruleObj != null) {
 					weight = hmapRules.get(rule).getRuleWeight();
 				} else {
@@ -97,7 +97,8 @@ public class FileEmail extends FileAbstract {
 			} else if (this.typeEmail == TypeEmail.SPAM) {
 
 				// <5 - FN
-				if (sum <= 5) { // NOT SPAM
+				if (sum <= 5) { 
+					// NOT SPAM
 					F++;
 					email.isFPFN(true);
 				} else {

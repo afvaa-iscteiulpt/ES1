@@ -9,13 +9,13 @@ import java.util.Map.Entry;
 
 public class FileRule extends FileAbstract {
 
-	public static TypeFile typeFile = TypeFile.RULE;
-	public HashMap<String, Rule> hmapRules = new HashMap<String, Rule>();
+	private static TypeFile typeFile = TypeFile.RULE;
+	private HashMap<String, Rule> hmapRules = new HashMap<String, Rule>();
 
 	public FileRule() {
 		super(typeFile);
 
-		if (super.statusFile == StatusFile.APPROVED)
+		if (super.getStatusFile() == StatusFile.APPROVED)
 			insertToRules();
 		else
 			resetHashmap();
@@ -25,12 +25,15 @@ public class FileRule extends FileAbstract {
 
 		String[] columnDetail = null;
 
-		for (String line : super.allLines) {
+		for (String line : super.getAllLines()) {
 			columnDetail = line.split("\t");
 
 			String ruleName = columnDetail[0];
-			String ruleWeight = columnDetail[1];
-
+			
+			String ruleWeight = "0";
+			if(columnDetail[1] != null)
+				ruleWeight = columnDetail[1];
+		
 			Rule rule = new Rule();
 
 			rule.setRuleName(ruleName);
@@ -69,7 +72,7 @@ public class FileRule extends FileAbstract {
 	}
 
 	public void replaceFileContent() {
-		String oldFileName = super.path;
+		String oldFileName = super.getPath();
 		String tmpFileName = "tmp_" + super.getName();
 
 		BufferedWriter bw = null;
@@ -78,7 +81,7 @@ public class FileRule extends FileAbstract {
 			
 			for(Entry<String, Rule> entry : this.hmapRules.entrySet()) {
 			    String key = entry.getKey();
-			    int value = entry.getValue().getRuleWeight();
+			    double value = entry.getValue().getRuleWeight();
 
 			    bw.write(key + "\t" + value + "\n");
 			}
@@ -110,4 +113,13 @@ public class FileRule extends FileAbstract {
 			} 			
 		}
 	}
+
+	public void getHmapRulesString() {
+		for(Entry<String, Rule> entry : this.getHmapRules().entrySet()) {
+		    System.out.println(entry.getKey() + " - " + entry.getValue().getRuleWeight());
+		}	
+	}
+	
+	
+	
 }

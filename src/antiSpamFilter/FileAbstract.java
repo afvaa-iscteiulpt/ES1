@@ -12,12 +12,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public abstract class FileAbstract {
 
-	public String name;
-	public String path;
-	public int numberOfLines;
-	public TypeFile typeFile;
-	public List<String> allLines = new ArrayList<String>();
-	public StatusFile statusFile; 
+	private String name;
+	private String path;
+	private int numberOfLines;
+	private TypeFile typeFile;
+	private List<String> allLines = new ArrayList<String>();
+	private StatusFile statusFile; 
 
 	public FileAbstract(TypeFile type) {
 		typeFile = type;
@@ -51,12 +51,12 @@ public abstract class FileAbstract {
 
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 
-			this.statusFile = StatusFile.APPROVED;
+			this.setStatusFile(StatusFile.APPROVED);
 			approveOption(chooser);
 
 		} else if (returnValue == JFileChooser.CANCEL_OPTION) {
 
-			this.statusFile = StatusFile.NOTAPPROVED;
+			this.setStatusFile(StatusFile.NOTAPPROVED);
 
 		}
 	}
@@ -139,5 +139,17 @@ public abstract class FileAbstract {
 
 	private void setPath(String path) {
 		this.path = path;
+	}
+
+	public List<String> getAllLines() {
+		return allLines;
+	}
+
+	public StatusFile getStatusFile() {
+		return statusFile;
+	}
+
+	public void setStatusFile(StatusFile statusFile) {
+		this.statusFile = statusFile;
 	}
 }

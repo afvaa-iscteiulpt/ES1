@@ -1,4 +1,3 @@
-/*
 package antiSpamFilter;
 
 
@@ -24,14 +23,20 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AntiSpamFilterAutomaticConfiguration {
-  private static final int INDEPENDENT_RUNS = 5 ;
+  private static final int INDEPENDENT_RUNS = 1 ;
 
-  public static void main(String[] args) throws IOException {
-    String experimentBaseDirectory = "experimentBaseDirectory";
+  private AntiSpamFilterProblem antiSpamFilterProblem;
+  
+  public AntiSpamFilterAutomaticConfiguration(AntiSpamFilterProblem antiSpamFilterProblem) {
+	  this.antiSpamFilterProblem = antiSpamFilterProblem;
+  }
+  
+  public void runSolution() throws IOException {
+    String experimentBaseDirectory = "experimentBaseDirectory2";	//mudar a pasta da experiencia 
 
     List<ExperimentProblem<DoubleSolution>> problemList = new ArrayList<>();
-    problemList.add(new ExperimentProblem<>(new AntiSpamFilterProblem()));
-
+    problemList.add(new ExperimentProblem<>(this.antiSpamFilterProblem));
+    
     List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> algorithmList =
             configureAlgorithmList(problemList);
 
@@ -53,7 +58,6 @@ public class AntiSpamFilterAutomaticConfiguration {
     new ComputeQualityIndicators<>(experiment).run() ;
     new GenerateLatexTablesWithStatistics(experiment).run() ;
     new GenerateBoxplotsWithR<>(experiment).setRows(1).setColumns(1).run() ;
-    
   }
 
   static List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> configureAlgorithmList(
@@ -75,4 +79,3 @@ public class AntiSpamFilterAutomaticConfiguration {
   }
 
 }
-*/

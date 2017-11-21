@@ -1,57 +1,57 @@
-/*
 package antiSpamFilter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
 
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
-	
-	  
-	  public AntiSpamFilterProblem() {
-	    // 10 variables (anti-spam filter rules) by default 
-	    this(10);
-	  }
 
-	  public AntiSpamFilterProblem(Integer numberOfVariables) {
-	    setNumberOfVariables(numberOfVariables);
-	    setNumberOfObjectives(2);
-	    setName("AntiSpamFilterProblem");
+	private FileEmail fileHam;
+	private FileEmail fileSpam;
+	private FileRule fileRules;
 
-	    List<Double> lowerLimit = new ArrayList<>(getNumberOfVariables()) ;
-	    List<Double> upperLimit = new ArrayList<>(getNumberOfVariables()) ;
+	public AntiSpamFilterProblem(Integer numberOfVariables, FileEmail fileHam, FileEmail fileSpam, FileRule fileRules) {
+		setNumberOfVariables(numberOfVariables);
+		setNumberOfObjectives(2);
+		setName("AntiSpamFilterProblem");
 
-	    for (int i = 0; i < getNumberOfVariables(); i++) {
-	      lowerLimit.add(-5.0);
-	      upperLimit.add(5.0);
-	    }
+		this.fileHam = fileHam;
+		this.fileSpam = fileSpam;
+		this.fileRules = fileRules;
+		
+		List<Double> lowerLimit = new ArrayList<>(getNumberOfVariables());
+		List<Double> upperLimit = new ArrayList<>(getNumberOfVariables());
 
-	    setLowerLimit(lowerLimit);
-	    setUpperLimit(upperLimit);
-	  }
+		for (int i = 0; i < getNumberOfVariables(); i++) {
+			lowerLimit.add(-5.0);
+			upperLimit.add(5.0);
+		}
 
-	  public void evaluate(DoubleSolution solution){
-	    double aux, xi, xj;
-	    double[] fx = new double[getNumberOfObjectives()];
-	    double[] x = new double[getNumberOfVariables()];
-	    for (int i = 0; i < solution.getNumberOfVariables(); i++) {
-	      x[i] = solution.getVariableValue(i) ;
-	    }
-
-	    fx[0] = 0.0;
-	    for (int var = 0; var < solution.getNumberOfVariables() - 1; var++) {
-		  fx[0] += Math.abs(x[0]); // Example for testing
-	    }
-	    
-	    fx[1] = 0.0;
-	    for (int var = 0; var < solution.getNumberOfVariables(); var++) {
-	    	fx[1] += Math.abs(x[1]); // Example for testing
-	    }
-
-	    solution.setObjective(0, fx[0]);
-	    solution.setObjective(1, fx[1]);
-	  }
+		setLowerLimit(lowerLimit);
+		setUpperLimit(upperLimit);
 	}
-	*/
+
+	public void evaluate(DoubleSolution solution) {
+		
+		//set weight for each rule
+		int index = 0;
+		for(Entry<String, Rule> entry : fileRules.getHmapRules().entrySet()) {
+		    Rule rule = entry.getValue();
+		    
+		    rule.setRuleWeight(solution.getVariableValue(index));
+		    
+		    index++;
+		}
+		
+		HashMap<String, Rule> hmapRules = this.fileRules.getHmapRules();
+		int FP = this.fileHam.calculateFPorFN(hmapRules);
+		int FN = this.fileSpam.calculateFPorFN(hmapRules);
+		
+		solution.setObjective(0, FP);
+		solution.setObjective(1, FN);
+	}
+}
