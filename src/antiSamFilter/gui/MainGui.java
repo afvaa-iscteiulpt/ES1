@@ -1,4 +1,4 @@
-package Gui;
+package antiSamFilter.gui;
 
 import java.awt.EventQueue;
 
