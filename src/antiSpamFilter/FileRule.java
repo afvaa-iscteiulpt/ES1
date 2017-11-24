@@ -37,7 +37,7 @@ public class FileRule extends FileAbstract {
 			Rule rule = new Rule();
 
 			rule.setRuleName(ruleName);
-			rule.setRuleWeight(Integer.parseInt(ruleWeight));
+			rule.setRuleWeight(ruleWeight);
 
 			this.hmapRules.put(ruleName, rule);
 		}
@@ -52,7 +52,7 @@ public class FileRule extends FileAbstract {
 		this.hmapRules = new HashMap<String, Rule>();
 	}
 
-	public void createNewRule(String ruleName, int ruleWeight) {
+	public void createNewRule(String ruleName, String ruleWeight) {
 		Rule rule = new Rule();
 
 		rule.setRuleName(ruleName);
@@ -81,7 +81,7 @@ public class FileRule extends FileAbstract {
 			
 			for(Entry<String, Rule> entry : this.hmapRules.entrySet()) {
 			    String key = entry.getKey();
-			    double value = entry.getValue().getRuleWeight();
+			    String value = entry.getValue().getRuleWeight();
 
 			    bw.write(key + "\t" + value + "\n");
 			}
@@ -103,7 +103,7 @@ public class FileRule extends FileAbstract {
 		newFile.renameTo(oldFile);
 	}
 	
-	public void applyToRules(String[] rules, int weight) {
+	public void applyToRules(String[] rules, String weight) {
 		for (String rule : rules) {
 			
 			Rule ruleObj = this.hmapRules.get(rule);

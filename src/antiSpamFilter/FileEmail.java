@@ -39,7 +39,7 @@ public class FileEmail extends FileAbstract {
 			String id = fullPath.replace("xval_initial/9/_spam_/", "").replace("xval_initial/9/_ham_/", "");
 			email.setId(id);
 
-			appliedRules = Arrays.copyOfRange(appliedRules, 1, appliedRules.length - 1);
+			appliedRules = Arrays.copyOfRange(appliedRules, 0, appliedRules.length);
 			email.setAppliedRules(appliedRules);
 
 			this.linkedListEmails.add(email);
@@ -71,14 +71,14 @@ public class FileEmail extends FileAbstract {
 
 				Rule ruleObj = hmapRules.get(rule);
 
-				double weight = 0;
+				String weight = "0";
 				if (ruleObj != null) {
 					weight = hmapRules.get(rule).getRuleWeight();
 				} else {
 					// System.out.println("The follow rule doesn't exist: " + rule);
 				}
 				
-				sum += weight;
+				sum += Double.valueOf(weight);
 			}
 			
 			email.setCurrentSum(sum);

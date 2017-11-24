@@ -42,7 +42,7 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 		for(Entry<String, Rule> entry : fileRules.getHmapRules().entrySet()) {
 		    Rule rule = entry.getValue();
 		    
-		    rule.setRuleWeight(solution.getVariableValue(index));
+		    rule.setRuleWeight(String.valueOf(solution.getVariableValue(index)));
 		    
 		    index++;
 		}

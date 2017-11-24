@@ -34,8 +34,8 @@ public class Main {
 		
 		AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
 
-		fileHam.showTableEmail();
-		fileSpam.showTableEmail();
+		//fileHam.showTableEmail();
+		//fileSpam.showTableEmail();
 		
 		try {
 			

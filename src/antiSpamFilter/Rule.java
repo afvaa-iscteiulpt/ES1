@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Rule {
 
 	public String ruleName;
-	public double ruleWeight;
+	public String ruleWeight;
 	
 	public Rule() {
 		
@@ -15,20 +15,20 @@ public class Rule {
 		this.ruleName = ruleName;
 	}
 
-	public void setRuleWeight(double ruleWeight) {
+	public void setRuleWeight(String ruleWeight) {
 		this.ruleWeight = ruleWeight;
 	}
 	
 	public void generateRandomWeight() {
-		int randomNum = ThreadLocalRandom.current().nextInt(-5, 5 + 1);
-		this.ruleWeight = randomNum;
+		double randomNum = ThreadLocalRandom.current().nextDouble(-5, 5 + 1);
+		this.ruleWeight = String.valueOf(randomNum);
 	}
 
 	public String getRuleName() {
 		return ruleName;
 	}
 
-	public double getRuleWeight() {
+	public String getRuleWeight() {
 		return ruleWeight;
 	}
 
