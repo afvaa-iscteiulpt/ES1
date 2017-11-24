@@ -1,4 +1,4 @@
-package antiSamFilter.gui;
+package antiSpamFilter.gui;
 
 import java.awt.EventQueue;
 
