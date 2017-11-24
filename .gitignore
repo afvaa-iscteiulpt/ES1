@@ -1,1 +1,4 @@
 /bin/
+/experimentBaseDirectory/
+/experimentBaseDirectory2/
+.classpath
