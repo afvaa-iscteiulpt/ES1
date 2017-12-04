@@ -16,6 +16,7 @@ public class RunGui {
 
 	private JFrame frame;
 	private JTable table;
+	private ConfGui confGui;
 
 	public RunGui() {
 		initialize();
@@ -23,6 +24,7 @@ public class RunGui {
 	}
 
 	private void initialize() {
+		// Gui Visuals
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,9 +64,31 @@ public class RunGui {
 		JLabel lblSearch = new JLabel("Search");
 		panel_1.add(lblSearch, BorderLayout.NORTH);
 		
+		
+		//Action Listeners
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				confGui = new ConfGui();
+			}
+		});
+		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			//	table.set
+			//Run
+				
+			}
+		});
+		
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			//	show ham file
+				
+			}
+		});
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			//	show spam file
+				
 			}
 		});
 	}
