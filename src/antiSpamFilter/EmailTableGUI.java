@@ -26,7 +26,7 @@ public class EmailTableGUI extends JPanel {
     public static void createAndShowGUI(Object[][] data, String[] columnNames, String typeEmail) {
         //Create and set up the window.
         JFrame frame = new JFrame("Email Table - " + typeEmail + " file ");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
         EmailTableGUI newContentPane = new EmailTableGUI(data, columnNames);

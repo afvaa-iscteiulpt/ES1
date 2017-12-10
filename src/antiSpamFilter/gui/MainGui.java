@@ -59,7 +59,7 @@ public class MainGui {
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 
-		JButton btnNewButton = new JButton("Ham");
+		JButton btnNewButton = new JButton("Rules");
 		panel_1.add(btnNewButton);
 
 		JLabel lblNewLabel_1 = new JLabel("No File Selected");
@@ -136,7 +136,7 @@ public class MainGui {
 						&& fileRules.getStatusFile() == StatusFile.APPROVED
 						&& fileHam.getStatusFile() == StatusFile.APPROVED
 						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
-					runGui = new RunGui();
+					runGui = new RunGui(fileRules, fileHam, fileSpam);
 					frame.setVisible(false);
 					System.out.println(
 							fileHam.getNumberOfLines() + fileRules.getNumberOfLines() + fileSpam.getNumberOfLines());

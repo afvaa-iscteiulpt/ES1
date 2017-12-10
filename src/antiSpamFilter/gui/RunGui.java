@@ -8,17 +8,30 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
+
+import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
+import antiSpamFilter.AntiSpamFilterProblem;
+import antiSpamFilter.FileEmail;
+import antiSpamFilter.FileRule;
 
 public class RunGui {
 
 	private JFrame frame;
 	private JTable table;
 	private ConfGui confGui;
+	private FileRule fileRules;
+	private FileEmail fileHam;
+	private FileEmail fileSpam;
 
-	public RunGui() {
+
+	public RunGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
+		this.fileRules=fileRules;
+		this.fileHam=fileHam;
+		this.fileSpam=fileSpam;
 		initialize();
 		frame.setVisible(true);
 	}
@@ -75,20 +88,25 @@ public class RunGui {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			//Run
+				AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
 				
+				AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
+				lblNewLabel.setText("FP: " );
+				lblNewLabel_1.setText("FN: " );
 			}
 		});
 		
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			//	show ham file
-				
+				fileHam.showTableEmail();
 			}
 		});
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			//	show spam file
-				
+				fileSpam.showTableEmail();
+
 			}
 		});
 	}
