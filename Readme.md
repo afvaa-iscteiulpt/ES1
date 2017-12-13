@@ -1,8 +1,8 @@
 Identificação da turma:<br />
 ```
-LEI-PL<br />
-EIC2<br />
-EIC1<br />
+LEI-PL
+EIC2
+EIC1
 ```
 <br />
 Identificação do grupo:<br />
