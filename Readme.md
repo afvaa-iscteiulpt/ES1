@@ -1,3 +1,5 @@
+# AntiSpam Filter
+
 ### Identificação da turma:<br />
 ```
 LEI-PL
@@ -12,7 +14,7 @@ EIC1
 <br />
 ### Identificação do número, nome e papel de cada membro do grupo:<br />
 ```
-62109		André Vieira		SCRUM Master
+62109		André Vieira		Developer
 62112		Diogo Pires			Quality Manager
 ```
 <br />
