@@ -1,17 +1,27 @@
 Identificação da turma:<br />
-	LEI-PL<br />
-	EIC2<br />
-	EIC1<br />
+```
+LEI-PL<br />
+EIC2<br />
+EIC1<br />
+```
 <br />
 Identificação do grupo:<br />
-	105<br />
+```
+105<br />
+```
 <br />
 Identificação do número, nome e papel de cada membro do grupo:<br />
-	62109		André Vieira		SCRUM Master<br />
-	62112		Diogo Pires			Quality Manager<br />
+```
+62109		André Vieira		SCRUM Master<br />
+62112		Diogo Pires			Quality Manager<br />
+```
 <br />
 Identificação da variante do projeto desenvolvida:<br />
-	AntiSpamConfigurationForBalancedProfessionalAndLeisureMailbox<br />
+```
+AntiSpamConfigurationForBalancedProfessionalAndLeisureMailbox<br />
+```
 <br />
 Link para um vídeo no youtube com a demonstração da aplicação final desenvolvida:<br />
-	https://...<br />
+```
+https://...<br />
+```
