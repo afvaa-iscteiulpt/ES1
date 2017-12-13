@@ -15,7 +15,7 @@ EIC1
 ### Identificação do número, nome e papel de cada membro do grupo:<br />
 ```
 62109		André Vieira		Developer
-62112		Diogo Pires			Quality Manager
+62112		Diogo Pires		Quality Manager
 ```
 
 ### Identificação da variante do projeto desenvolvida:<br />
