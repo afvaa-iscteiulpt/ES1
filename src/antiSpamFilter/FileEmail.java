@@ -6,9 +6,9 @@ import java.util.LinkedList;
 
 public class FileEmail extends FileAbstract {
 
-	public static TypeFile typeFile = TypeFile.EMAIL;
-	public TypeEmail typeEmail;
-	public LinkedList<Email> linkedListEmails = new LinkedList<Email>();
+	private static TypeFile typeFile = TypeFile.EMAIL;
+	private TypeEmail typeEmail;
+	private LinkedList<Email> linkedListEmails = new LinkedList<Email>();
 
 	public FileEmail(TypeEmail typeEmail) {
 		super(typeFile);
@@ -116,8 +116,8 @@ public class FileEmail extends FileAbstract {
 		Object[][] data = getDataTable();
 		String[] columns = getColumnsTable();
 		
-		EmailTableGUI emailTableGui = new EmailTableGUI(data, columns);
 		EmailTableGUI.createAndShowGUI(data, columns, typeEmail.toString());
+		
 	}
 
 	private Object[][] getDataTable() {

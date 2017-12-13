@@ -1,43 +1,38 @@
-package antiSpamFilter.tester;
+package antiSpamFilter.jUnitTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class FileEmailTester {
+public class FileAbstractTester {
 
 	@Test
-	public void testFileEmail() {
+	public void testFileAbstract() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testInsertToEmails() {
+	public void testShowFileDialog() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetTypeEmail() {
+	public void testGetName() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetLinkedListEmails() {
+	public void testGetPath() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testResetList() {
+	public void testGetNumberOfLines() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testCalculateFPandFN() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testShowTableEmail() {
+	public void testGetTypeFile() {
 		fail("Not yet implemented");
 	}
 

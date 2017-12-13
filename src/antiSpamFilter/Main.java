@@ -1,22 +1,33 @@
 package antiSpamFilter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
+import org.omg.CORBA.portable.InputStream;
+
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
-		FileRule fileRules = new FileRule();
+		//runH();
+		
+		  
+		  //Rscript name
+		  //pdflatex name
+		
+		//FileRule fileRules = new FileRule();
 		//fileRules.generateRandomWeightsForEachRule();
 		//fileRules.createNewRule("LALALA", 4);
 		//fileRules.deleteRule("LALALA");
 		//fileRules.replaceFileContent();
 
-		FileEmail fileHam = new FileEmail(TypeEmail.HAM);
+		//FileEmail fileHam = new FileEmail(TypeEmail.HAM);
 		//System.out.println("FP = " + fileHam.calculateFPorFN(fileRules.getHmapRules()));
-		FileEmail fileSpam = new FileEmail(TypeEmail.SPAM);
+		//FileEmail fileSpam = new FileEmail(TypeEmail.SPAM);
 		//System.out.println("FN = " + fileSpam.calculateFPorFN(fileRules.getHmapRules()));
 
 		//runMultipleTests(10000);
@@ -29,7 +40,7 @@ public class Main {
 
 		//fileHam.showTableEmail();
 		//fileSpam.showTableEmail();
-		
+		/*
 		AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
 		
 		AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
@@ -45,6 +56,7 @@ public class Main {
 			System.out.println("Something wrong with current problem!");
 			e.printStackTrace();
 		}
+		*/
 	}
 
 	public static void runMultipleTests(int numberOfTests) {
@@ -79,4 +91,17 @@ public class Main {
 		fileSpam.showTableEmail();
 	}
 
+	public static void runH() throws IOException {
+		ProcessBuilder builder = new ProcessBuilder(
+	            "cmd.exe", "/c", "pdflatex aa");
+	        builder.redirectErrorStream(true);
+	        Process p = builder.start();
+	        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+	        String line;
+	        while (true) {
+	            line = r.readLine();
+	            if (line == null) { break; }
+	            System.out.println(line);
+	        }
+	}
 }

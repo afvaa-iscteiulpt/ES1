@@ -21,7 +21,7 @@ public class FileRule extends FileAbstract {
 			resetHashmap();
 	}
 
-	public void insertToRules() {
+	private void insertToRules() {
 
 		String[] columnDetail = null;
 
@@ -119,7 +119,4 @@ public class FileRule extends FileAbstract {
 		    System.out.println(entry.getKey() + " - " + entry.getValue().getRuleWeight());
 		}	
 	}
-	
-	
-	
 }

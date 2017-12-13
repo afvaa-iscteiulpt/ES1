@@ -4,12 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Rule {
 
-	public String ruleName;
-	public String ruleWeight;
-	
-	public Rule() {
-		
-	}
+	private String ruleName;
+	private String ruleWeight;
 	
 	public void setRuleName(String ruleName) {
 		this.ruleName = ruleName;

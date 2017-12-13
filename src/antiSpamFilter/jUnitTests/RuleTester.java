@@ -1,38 +1,38 @@
-package antiSpamFilter.tester;
+package antiSpamFilter.jUnitTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class FileAbstractTester {
+public class RuleTester {
 
 	@Test
-	public void testFileAbstract() {
+	public void testRule() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testShowFileDialog() {
+	public void testSetRuleName() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetName() {
+	public void testSetRuleWeight() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetPath() {
+	public void testGenerateRandomWeight() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetNumberOfLines() {
+	public void testGetRuleName() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetTypeFile() {
+	public void testGetRuleWeight() {
 		fail("Not yet implemented");
 	}
 

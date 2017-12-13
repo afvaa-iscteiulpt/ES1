@@ -1,38 +1,43 @@
-package antiSpamFilter.tester;
+package antiSpamFilter.jUnitTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class RuleTester {
+public class FileEmailTester {
 
 	@Test
-	public void testRule() {
+	public void testFileEmail() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testSetRuleName() {
+	public void testInsertToEmails() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testSetRuleWeight() {
+	public void testGetTypeEmail() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGenerateRandomWeight() {
+	public void testGetLinkedListEmails() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetRuleName() {
+	public void testResetList() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetRuleWeight() {
+	public void testCalculateFPandFN() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testShowTableEmail() {
 		fail("Not yet implemented");
 	}
 

@@ -2,12 +2,12 @@ package antiSpamFilter;
 
 public class Email {
 
-	public String fullPath;
-	public String id;
-	public String[] appliedRules;
-	public TypeEmail type = null;
-	public Boolean isFPFN = null;
-	public double currentSum;
+	private String fullPath;
+	private String id;
+	private String[] appliedRules;
+	private TypeEmail type = null;
+	private Boolean isFPFN = null;
+	private double currentSum;
 	
 	public Email(TypeEmail type) {
 		this.type = type;
