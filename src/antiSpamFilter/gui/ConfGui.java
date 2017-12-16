@@ -78,12 +78,14 @@ public class ConfGui {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Add New Rule
+				//fileRules.createNewRule("LALALA", 4);
 			}
 		});
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Generate Random Weights
-				
+				//fileRules.generateRandomWeightsForEachRule();
+
 			}
 		});
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -94,21 +96,29 @@ public class ConfGui {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Delete Rule(s)
+				//fileRules.deleteRule("LALALA");
+
 				
 			}
 		});
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Save To File
-				
+				//fileRules.replaceFileContent();
+
 			}
 		});
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Close
+				frame.setVisible(false);
 				
 			}
 		});
+		
+		//Add Action listener para a tabela.
+		
+		
 		
 	}
 
