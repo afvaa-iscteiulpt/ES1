@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,12 +27,15 @@ public class RunGui {
 	private FileRule fileRules;
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
+	AntiSpamFilterProblem problem;
+
 
 
 	public RunGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules=fileRules;
 		this.fileHam=fileHam;
 		this.fileSpam=fileSpam;
+		new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
 		initialize();
 		frame.setVisible(true);
 	}
@@ -49,8 +53,11 @@ public class RunGui {
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnNewButton_1 = new JButton("Run");
+		JButton btnNewButton_1 = new JButton("Run Auto");
 		panel.add(btnNewButton_1);
+		
+		JButton btnRunManual = new JButton("Run Manual");
+		panel.add(btnRunManual);
 		
 		JLabel lblNewLabel = new JLabel("FP: ");
 		panel.add(lblNewLabel);
@@ -85,14 +92,29 @@ public class RunGui {
 			}
 		});
 		
+		btnRunManual.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Run with Manual config
+				
+			}
+		});
+		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			//Run
-				AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
+			//Run With Auto config
 				
 				AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
-				lblNewLabel.setText("FP: " );
-				lblNewLabel_1.setText("FN: " );
+				try {
+					antiSpamConfig.runSolution();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				double FP = fileHam.calculateFPorFN(fileRules.getHmapRules());
+				double FN = fileSpam.calculateFPorFN(fileRules.getHmapRules());
+				lblNewLabel.setText("FP: " + FP); //actualizar os valores
+				lblNewLabel_1.setText("FN: " + FN); //actualizar os valores
 			}
 		});
 		
