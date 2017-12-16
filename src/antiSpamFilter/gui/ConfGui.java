@@ -9,6 +9,10 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import antiSpamFilter.FileEmail;
+import antiSpamFilter.FileRule;
+
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,16 +22,22 @@ public class ConfGui {
 	private JFrame frame;
 	private JTextField textField;
 	private JTable table;
+	private FileRule fileRules;
+	private FileEmail fileHam;
+	private FileEmail fileSpam;
 
 
-	public ConfGui() {
-		frame.setVisible(true);
+	public ConfGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
+		this.fileRules = fileRules;
+		this.fileHam=fileHam;
+		this.fileSpam=fileSpam;
 		initialize();
 	}
 
 	private void initialize() {
 		// Gui Visuals
 		frame = new JFrame();
+		frame.setVisible(true);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -57,8 +67,6 @@ public class ConfGui {
 		JButton btnNewButton_4 = new JButton("Save To File");
 		panel.add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("Close");
-		panel.add(btnNewButton_5);
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
@@ -90,7 +98,10 @@ public class ConfGui {
 		});
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Apply
+				//Apply & close
+				RunGui run = new RunGui(fileRules, fileHam, fileSpam);
+				frame.setVisible(false);
+				
 			}
 		});
 		btnNewButton_3.addActionListener(new ActionListener() {
@@ -108,13 +119,7 @@ public class ConfGui {
 
 			}
 		});
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Close
-				frame.setVisible(false);
-				
-			}
-		});
+
 		
 		//Add Action listener para a tabela.
 		

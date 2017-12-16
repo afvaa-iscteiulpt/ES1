@@ -98,9 +98,9 @@ public class MainGui {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fileRules = new FileRule();
-//				if ( fileRules.getStatusFile() == StatusFile.APPROVED) {
-//					lblNewLabel_1.setText("Path: " + fileRules.getPath() + "\n" + " Number Of Lines: " + fileRules.getNumberOfLines());
-//				}
+				if ( fileRules.getStatusFile() == StatusFile.APPROVED) {
+					lblNewLabel_1.setText("Path: " + fileRules.getPath() + "\n" + " Number Of Lines: " + fileRules.getNumberOfLines());
+				}
 			}
 		});
 

@@ -18,6 +18,7 @@ import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.AntiSpamFilterProblem;
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
+import antiSpamFilter.StatusFile;
 
 public class RunGui {
 
@@ -35,8 +36,16 @@ public class RunGui {
 		this.fileRules=fileRules;
 		this.fileHam=fileHam;
 		this.fileSpam=fileSpam;
-		new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
-		initialize();
+		if (fileRules != null && fileHam != null && fileSpam != null
+				&& fileRules.getStatusFile() == StatusFile.APPROVED
+				&& fileHam.getStatusFile() == StatusFile.APPROVED
+				&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
+			problem = new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
+		}
+		else {
+			System.out.println("Problem Initializing AntiSpamFilter...");
+		}
+			initialize();
 		frame.setVisible(true);
 	}
 
@@ -88,7 +97,8 @@ public class RunGui {
 		//Action Listeners
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				confGui = new ConfGui();
+				confGui = new ConfGui(fileRules, fileHam, fileSpam);
+				frame.setVisible(false);
 			}
 		});
 		
