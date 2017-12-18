@@ -25,7 +25,7 @@ public abstract class FileAbstract {
 		showFileDialog();
 	}
 
-	public void showFileDialog() {
+	private void showFileDialog() {
 
 		String userDir = System.getProperty("user.home");
 		JFileChooser chooser = new JFileChooser(userDir + "/Desktop");

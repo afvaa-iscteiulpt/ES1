@@ -21,7 +21,7 @@ public class Rule {
 	}
 
 	public String getRuleName() {
-		return ruleName;
+		return this.ruleName;
 	}
 
 	public String getRuleWeight() {

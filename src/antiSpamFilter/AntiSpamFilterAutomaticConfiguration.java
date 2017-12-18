@@ -32,7 +32,7 @@ public class AntiSpamFilterAutomaticConfiguration {
   }
   
   public void runSolution() throws IOException {
-    String experimentBaseDirectory = "experimentBaseDirectory2";	//mudar a pasta da experiencia 
+    String experimentBaseDirectory = "experimentDirectory";	//mudar a pasta da experiencia 
 
     List<ExperimentProblem<DoubleSolution>> problemList = new ArrayList<>();
     problemList.add(new ExperimentProblem<>(this.antiSpamFilterProblem));
@@ -77,5 +77,15 @@ public class AntiSpamFilterAutomaticConfiguration {
    
     return algorithms;
   }
+
+public String[] checkBestSolution() {
+	//parse ficheiro
+	//fazer conta
+	//verificar o numero mais baixo - FP e FN
+	//retirar valores de weights e enfia-los no hashmaprules
+	//results[FP, FN, WEIGTHS to put in hashmap]
+	String[] results = {"","",""};
+	return results;
+}
 
 }

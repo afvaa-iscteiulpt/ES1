@@ -11,8 +11,10 @@ import org.omg.CORBA.portable.InputStream;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 
+		ConsoleMenu consoleMenu = new ConsoleMenu();
+		
 		//runH();
 		
 		  
@@ -22,7 +24,7 @@ public class Main {
 		//FileRule fileRules = new FileRule();
 		//fileRules.generateRandomWeightsForEachRule();
 		//fileRules.createNewRule("LALALA", 4);
-		//fileRules.deleteRule("LALALA");
+		//fileRules.deleteRules("LALALA");
 		//fileRules.replaceFileContent();
 
 		//FileEmail fileHam = new FileEmail(TypeEmail.HAM);

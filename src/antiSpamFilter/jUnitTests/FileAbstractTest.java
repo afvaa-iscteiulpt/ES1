@@ -2,23 +2,16 @@ package antiSpamFilter.jUnitTests;
 
 import static org.junit.Assert.*;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class FileAbstractTester {
+import antiSpamFilter.FileAbstract;
 
-	@Test
-	public void testFileAbstract() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testShowFileDialog() {
-		fail("Not yet implemented");
-	}
+public class FileAbstractTest {
 
 	@Test
 	public void testGetName() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -37,7 +30,17 @@ public class FileAbstractTester {
 	}
 
 	@Test
-	public void testToString() {
+	public void testGetAllLines() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetStatusFile() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetStatusFile() {
 		fail("Not yet implemented");
 	}
 

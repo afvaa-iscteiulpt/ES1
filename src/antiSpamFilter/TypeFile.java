@@ -2,5 +2,7 @@ package antiSpamFilter;
 
 public enum TypeFile {
 	EMAIL, 
-	RULE
+	RULE,
+	HV,
+	LATEX
 }

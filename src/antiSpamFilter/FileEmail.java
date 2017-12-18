@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import antiSpamFilterGui.EmailTableGUI;
+
 public class FileEmail extends FileAbstract {
 
 	private static TypeFile typeFile = TypeFile.EMAIL;

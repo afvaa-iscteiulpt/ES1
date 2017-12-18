@@ -14,8 +14,8 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	private FileEmail fileSpam;
 	private FileRule fileRules;
 
-	public AntiSpamFilterProblem(Integer numberOfVariables, FileEmail fileHam, FileEmail fileSpam, FileRule fileRules) {
-		setNumberOfVariables(numberOfVariables);
+	public AntiSpamFilterProblem(FileEmail fileHam, FileEmail fileSpam, FileRule fileRules) {
+		setNumberOfVariables(fileRules.getNumberOfLines());
 		setNumberOfObjectives(2);
 		setName("AntiSpamFilterProblem");
 

@@ -11,7 +11,7 @@ public class FileRule extends FileAbstract {
 
 	private static TypeFile typeFile = TypeFile.RULE;
 	private HashMap<String, Rule> hmapRules = new HashMap<String, Rule>();
-
+ 
 	public FileRule() {
 		super(typeFile);
 
@@ -61,8 +61,10 @@ public class FileRule extends FileAbstract {
 		this.hmapRules.put(ruleName, rule);
 	}
 	
-	public void deleteRule(String ruleName) {
-		this.hmapRules.remove(ruleName);
+	public void deleteRules(String[] rulesName) {
+		for (String rule : rulesName) {
+			this.hmapRules.remove(rule);
+		}
 	}
 
 	public void generateRandomWeightsForEachRule() {
@@ -114,9 +116,24 @@ public class FileRule extends FileAbstract {
 		}
 	}
 
-	public void getHmapRulesString() {
+	public String getHmapRulesString() {
+		String fullString = "";
 		for(Entry<String, Rule> entry : this.getHmapRules().entrySet()) {
-		    System.out.println(entry.getKey() + " - " + entry.getValue().getRuleWeight());
-		}	
+		    String subString = entry.getKey() + "(" + entry.getValue().getRuleWeight() + ")";
+			fullString += (subString + " | ");
+		}
+		return fullString;	
+	}
+
+	public void setHashMap(HashMap<String, Rule> hmapRules2) {
+		this.hmapRules = hmapRules2;		
+	}
+
+	public String findRule(String rule) {
+		if(this.hmapRules.containsKey(rule)) {
+			return "Rule found!\n";
+		} else {
+			return "Rule not found!\n";
+		}
 	}
 }
