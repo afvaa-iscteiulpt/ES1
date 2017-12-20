@@ -88,14 +88,14 @@ public class MainGui {
 
 		JLabel lblNewLabel_3 = new JLabel("No File Selected");
 		panel_3.add(lblNewLabel_3);
-		
+
 		JButton btnReset = new JButton("Reset");
 		panel.add(btnReset);
-		
-		JButton btnRunauto = new JButton("Run (Auto)");
+
+		JButton btnRunauto = new JButton("Run (Manual)");
 		panel.add(btnRunauto);
 
-		JButton btnRunTests = new JButton("Run (Manual)");
+		JButton btnRunTests = new JButton("Run (Auto)");
 		panel.add(btnRunTests);
 
 		// Action Listeners
@@ -103,8 +103,9 @@ public class MainGui {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fileRules = new FileRule();
-				if ( fileRules.getStatusFile() == StatusFile.APPROVED) {
-					lblNewLabel_1.setText("Path: " + fileRules.getPath() + "\n" + " Number Of Lines: " + fileRules.getNumberOfLines());
+				if (fileRules.getStatusFile() == StatusFile.APPROVED) {
+					lblNewLabel_1.setText("Path: " + fileRules.getPath() + "\n" + " Number Of Lines: "
+							+ fileRules.getNumberOfLines());
 				}
 			}
 		});
@@ -114,8 +115,9 @@ public class MainGui {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fileHam = new FileEmail(TypeEmail.HAM);
-				if ( fileHam.getStatusFile() == StatusFile.APPROVED) {
-					lblNewLabel_2.setText("Path: " + fileHam.getPath() + "\n" + " Number Of Lines: " + fileHam.getNumberOfLines());
+				if (fileHam.getStatusFile() == StatusFile.APPROVED) {
+					lblNewLabel_2.setText(
+							"Path: " + fileHam.getPath() + "\n" + " Number Of Lines: " + fileHam.getNumberOfLines());
 				}
 
 			}
@@ -126,8 +128,9 @@ public class MainGui {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fileSpam = new FileEmail(TypeEmail.SPAM);
-				if ( fileSpam.getStatusFile() == StatusFile.APPROVED) {
-					lblNewLabel_3.setText("Path: " + fileSpam.getPath() + "\n" + " Number Of Lines: " + fileSpam.getNumberOfLines());
+				if (fileSpam.getStatusFile() == StatusFile.APPROVED) {
+					lblNewLabel_3.setText(
+							"Path: " + fileSpam.getPath() + "\n" + " Number Of Lines: " + fileSpam.getNumberOfLines());
 				}
 			}
 		});
@@ -143,8 +146,6 @@ public class MainGui {
 						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
 					runGui = new RunGui(fileRules, fileHam, fileSpam);
 					frame.setVisible(false);
-					System.out.println(
-							fileHam.getNumberOfLines() + fileRules.getNumberOfLines() + fileSpam.getNumberOfLines());
 
 				} else {
 					// Display popup Warning the user
@@ -152,9 +153,9 @@ public class MainGui {
 				}
 			}
 		});
-		
+
 		btnRunauto.addActionListener(new ActionListener() {
-			
+
 			private ConfGui confgui;
 
 			@Override
@@ -165,29 +166,26 @@ public class MainGui {
 						&& fileHam.getStatusFile() == StatusFile.APPROVED
 						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
 					confgui = new ConfGui(fileRules, fileHam, fileSpam);
-					//runGui = new RunGui(fileRules, fileHam, fileSpam);
+					// runGui = new RunGui(fileRules, fileHam, fileSpam);
 					frame.setVisible(false);
-					System.out.println(
-							fileHam.getNumberOfLines() + fileRules.getNumberOfLines() + fileSpam.getNumberOfLines());
-
 				} else {
 					// Display popup Warning the user
 					JOptionPane.showMessageDialog(null, "Input Files NOT approved, please correct it.");
 				}
 			}
 		});
-		
+
 		btnReset.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lblNewLabel_1.setText("No File Selected");
 				lblNewLabel_2.setText("No File Selected");
 				lblNewLabel_3.setText("No File Selected");
-				fileHam=null;
-				fileRules=null;
-				fileSpam=null;
-				
+				fileHam = null;
+				fileRules = null;
+				fileSpam = null;
+
 			}
 		});
 
