@@ -31,8 +31,12 @@ public class FileRule extends FileAbstract {
 			String ruleName = columnDetail[0];
 			
 			String ruleWeight = "0";
-			if(columnDetail[1] != null)
-				ruleWeight = columnDetail[1];
+			
+			if(columnDetail.length > 1) {
+				if(columnDetail[1] != null)
+					ruleWeight = columnDetail[1];
+			}
+			
 		
 			Rule rule = new Rule();
 
@@ -120,7 +124,7 @@ public class FileRule extends FileAbstract {
 		String fullString = "";
 		for(Entry<String, Rule> entry : this.getHmapRules().entrySet()) {
 		    String subString = entry.getKey() + "(" + entry.getValue().getRuleWeight() + ")";
-			fullString += (subString + " | ");
+			fullString += (subString + "\n");
 		}
 		return fullString;	
 	}

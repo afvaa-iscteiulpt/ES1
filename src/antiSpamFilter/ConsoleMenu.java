@@ -20,6 +20,8 @@ public class ConsoleMenu {
 	private int fileRulesLoaded = 0;
 	private int fileHamLoaded = 0;
 	private int fileSpamLoaded = 0;
+	
+	private boolean jmetalalreadyrunned = false;
 
 	public ConsoleMenu() throws IOException, InterruptedException {
 		showMainWindow();
@@ -189,6 +191,7 @@ public class ConsoleMenu {
 			break;
 		case 5:
 			saveToFile();
+			showManualWindow(0);
 			break;
 		case 9:
 			showMenuTypeOfConfig(0);
@@ -222,8 +225,9 @@ public class ConsoleMenu {
 		if (firstTime == 0)
 			System.out.println("\n#### Window 2.2 - AUTOMATIC CONFIGURATION");
 
+		String extraFeatures = (jmetalalreadyrunned != false) ? "\n4 - compile HV file" + "\n5 - compile latex file" : "";
 		System.out.println("1 - config rules (window)" + "\n2 - run jmetal and find best weights"
-				+ "\n3 - print rules and weights" + "\n4 - compile HV file" + "\n5 - compile latex file"
+				+ "\n3 - print rules and weights" + extraFeatures 
 				+ "\n6 - save rules to file" + "\n9 - back" + "\n0 - exit");
 
 		int[] validInputs = { 0, 1, 2, 3, 4, 5, 6, 9 };
@@ -259,10 +263,10 @@ public class ConsoleMenu {
 			showAutoWindow(1);
 			break;
 		case 4:
-			compileHv(); //falta acabar este
+			compileHv(); 
 			break;
 		case 5:
-			compileLatex(); //falta acabar este
+			compileLatex(); 
 			break;
 		case 6:
 			saveToFile();
@@ -297,6 +301,8 @@ public class ConsoleMenu {
 		// save to fileRules
 		// print FP e FN
 		// Sysout
+		
+		jmetalalreadyrunned = true;
 	}
 
 	private void compileLatex() throws IOException, InterruptedException {
@@ -449,4 +455,5 @@ public class ConsoleMenu {
 		
 		System.out.println("Saved to file!\n");
 	}
+
 }
