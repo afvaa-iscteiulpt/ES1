@@ -61,9 +61,6 @@ public class ConfGui {
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 		
-		JButton btnNewButton_2 = new JButton("Apply");
-		panel_2.add(btnNewButton_2);
-		
 		JLabel lblNewLabel = new JLabel("[-5;5]");
 		panel_2.add(lblNewLabel);
 		
@@ -74,8 +71,16 @@ public class ConfGui {
 		JButton btnNewButton_3 = new JButton("Delete Rule(s)");
 		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("Save To File");
-		panel.add(btnNewButton_4);
+		JButton btnNewButton_2 = new JButton("Save & Run");
+		panel.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Apply & close
+				RunGui run = new RunGui(fileRules, fileHam, fileSpam);
+				frame.setVisible(false);
+				
+			}
+		});
 		
 		
 		JPanel panel_1 = new JPanel();
@@ -116,10 +121,6 @@ public class ConfGui {
 		JButton btnNewButton = new JButton("Add New Rule");
 		panel_1.add(btnNewButton, BorderLayout.SOUTH);
 		
-		
-		
-		//Action Listeners
-
 		textField_1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -137,37 +138,23 @@ public class ConfGui {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Generate Random Weights
-				//fileRules.generateRandomWeightsForEachRule();
-
-			}
-		});
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Apply & close
-				RunGui run = new RunGui(fileRules, fileHam, fileSpam);
-				frame.setVisible(false);
+				fileRules.generateRandomWeightsForEachRule();
+				//Update table
 				
+
 			}
 		});
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Delete Rule(s)
+				//Delete Selected Rule on Jtable
 				//fileRules.deleteRule("LALALA");
 
 				
 			}
 		});
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Save To File
-				//fileRules.replaceFileContent();
 
-			}
-		});
-
-		
-		//Add Action listener para a tabela.
-		
+				
 		
 		
 	}

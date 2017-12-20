@@ -91,8 +91,11 @@ public class MainGui {
 		
 		JButton btnReset = new JButton("Reset");
 		panel.add(btnReset);
+		
+		JButton btnRunauto = new JButton("Run (Auto)");
+		panel.add(btnRunauto);
 
-		JButton btnRunTests = new JButton("Run Tests");
+		JButton btnRunTests = new JButton("Run (Manual)");
 		panel.add(btnRunTests);
 
 		// Action Listeners
@@ -149,6 +152,31 @@ public class MainGui {
 				}
 			}
 		});
+		
+		btnRunauto.addActionListener(new ActionListener() {
+			
+			private ConfGui confgui;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Check if all files are loaded.
+				if (fileRules != null && fileHam != null && fileSpam != null
+						&& fileRules.getStatusFile() == StatusFile.APPROVED
+						&& fileHam.getStatusFile() == StatusFile.APPROVED
+						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
+					confgui = new ConfGui(fileRules, fileHam, fileSpam);
+					//runGui = new RunGui(fileRules, fileHam, fileSpam);
+					frame.setVisible(false);
+					System.out.println(
+							fileHam.getNumberOfLines() + fileRules.getNumberOfLines() + fileSpam.getNumberOfLines());
+
+				} else {
+					// Display popup Warning the user
+					JOptionPane.showMessageDialog(null, "Input Files NOT approved, please correct it.");
+				}
+			}
+		});
+		
 		btnReset.addActionListener(new ActionListener() {
 			
 			@Override

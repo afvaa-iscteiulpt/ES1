@@ -75,7 +75,7 @@ public class RunGui {
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnNewButton_1 = new JButton("Run Auto");
+		JButton btnNewButton_1 = new JButton("ReRun Auto");
 		panel.add(btnNewButton_1);
 		
 		JButton btnRunManual = new JButton("Run Manual");

@@ -31,7 +31,7 @@ public class FileRule extends FileAbstract {
 			String ruleName = columnDetail[0];
 			
 			String ruleWeight = "0";
-			if(columnDetail[1] != null)
+			if(columnDetail.length>=2 && columnDetail[1] != null)
 				ruleWeight = columnDetail[1];
 		
 			Rule rule = new Rule();
