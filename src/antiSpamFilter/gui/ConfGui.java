@@ -4,18 +4,27 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
+import antiSpamFilter.Rule;
 
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 
 public class ConfGui {
 
@@ -25,6 +34,7 @@ public class ConfGui {
 	private FileRule fileRules;
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
+	private JTextField textField_1;
 
 
 	public ConfGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
@@ -38,7 +48,7 @@ public class ConfGui {
 		// Gui Visuals
 		frame = new JFrame();
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(300, 300, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -70,19 +80,54 @@ public class ConfGui {
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_3 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
+		flowLayout.setAlignOnBaseline(true);
+		flowLayout.setVgap(2);
+		flowLayout.setHgap(2);
+		panel_1.add(panel_3, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel_1 = new JLabel("Search:");
-		panel_1.add(lblNewLabel_1);
+		panel_3.add(lblNewLabel_1, BorderLayout.NORTH);
 		
-		table = new JTable();
-		panel_1.add(table);
+		textField_1 = new JTextField();
+		panel_3.add(textField_1);
+		textField_1.setColumns(10);
+		
+		
+		//Setup table
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("Rules");
+		model.addColumn("Weight");
+		for(Entry<String, Rule> entry : fileRules.getHmapRules().entrySet()) {
+			model.addRow(new Object[]{entry.getKey(),entry.getValue().getRuleWeight()});
+		}
+		JTable table = new JTable(model);
+		
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+		table.setRowSorter(sorter);
+		
+		//
+		
+		panel_1.add(new JScrollPane(table), BorderLayout.CENTER);
 		
 		JButton btnNewButton = new JButton("Add New Rule");
-		panel_1.add(btnNewButton);
+		panel_1.add(btnNewButton, BorderLayout.SOUTH);
+		
 		
 		
 		//Action Listeners
+
+		textField_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField_1.getText()));
+			}
+		});
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Add New Rule

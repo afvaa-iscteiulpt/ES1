@@ -15,6 +15,7 @@ import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
 import antiSpamFilter.StatusFile;
 import antiSpamFilter.TypeEmail;
+import javax.swing.SwingConstants;
 
 public class MainGui {
 
@@ -54,6 +55,7 @@ public class MainGui {
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblNewLabel = new JLabel("Load Files:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel);
 
 		JPanel panel_1 = new JPanel();

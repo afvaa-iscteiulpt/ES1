@@ -5,20 +5,32 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.AntiSpamFilterProblem;
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
+import antiSpamFilter.Rule;
 import antiSpamFilter.StatusFile;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class RunGui {
 
@@ -29,6 +41,7 @@ public class RunGui {
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
 	AntiSpamFilterProblem problem;
+	private JTextField textField;
 
 
 
@@ -52,7 +65,7 @@ public class RunGui {
 	private void initialize() {
 		// Gui Visuals
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(300, 300, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JSplitPane splitPane = new JSplitPane();
@@ -84,17 +97,49 @@ public class RunGui {
 		splitPane.setRightComponent(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		table = new JTable();
-		panel_1.add(table, BorderLayout.CENTER);
+		//Setup table
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("Rules");
+		model.addColumn("Weight");
+		for(Entry<String, Rule> entry : fileRules.getHmapRules().entrySet()) {
+			model.addRow(new Object[]{entry.getKey(),entry.getValue().getRuleWeight()});
+		}
+		JTable table = new JTable(model);
+		
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+		table.setRowSorter(sorter);
+		
+		//
+		
+		panel_1.add(new JScrollPane(table), BorderLayout.CENTER);
 		
 		JButton btnNewButton = new JButton("Configure Rules");
 		panel_1.add(btnNewButton, BorderLayout.SOUTH);
 		
-		JLabel lblSearch = new JLabel("Search");
-		panel_1.add(lblSearch, BorderLayout.NORTH);
+		JPanel panel_2 = new JPanel();
+		panel_1.add(panel_2, BorderLayout.NORTH);
 		
+		textField = new JTextField();
+		
+		JLabel lblSearch = new JLabel("Search");
+		panel_2.add(lblSearch);
+		panel_2.add(textField);
+		textField.setColumns(10);
+		table.setCellSelectionEnabled(false);
+		table.setRowSelectionAllowed(false);
+		table.setColumnSelectionAllowed(true);
 		
 		//Action Listeners
+
+		textField.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText()));
+			}
+		});
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				confGui = new ConfGui(fileRules, fileHam, fileSpam);
