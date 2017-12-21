@@ -4,20 +4,18 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
-import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
 import antiSpamFilter.StatusFile;
 import antiSpamFilter.TypeEmail;
-import javax.swing.SwingConstants;
 
 public class MainGui {
 
@@ -25,7 +23,6 @@ public class MainGui {
 	private FileRule fileRules;
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
-	private RunGui runGui;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -146,7 +143,7 @@ public class MainGui {
 						&& fileRules.getStatusFile() == StatusFile.APPROVED
 						&& fileHam.getStatusFile() == StatusFile.APPROVED
 						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
-					runGui = new RunGui(fileRules, fileHam, fileSpam, true);
+					RunGui runGui = new RunGui(fileRules, fileHam, fileSpam, true);
 					frame.setVisible(false);
 
 				} else {

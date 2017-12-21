@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -26,13 +28,14 @@ import antiSpamFilter.Rule;
 public class ConfGui {
 
 	private JFrame frame;
-	private JTextField textField;
 	private JTable table;
 	private FileRule fileRules;
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
 	private JTextField textField_1;
 	DefaultTableModel model;
+	private JTextField txtRuleName;
+	private JTextField textField1;
 
 	public ConfGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
@@ -55,19 +58,9 @@ public class ConfGui {
 		JButton btnNewButton_1 = new JButton("Generate Random Weights");
 		panel.add(btnNewButton_1);
 
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2);
-
-		JLabel lblNewLabel = new JLabel("[-5;5]");
-		panel_2.add(lblNewLabel);
-
-		textField = new JTextField();
-		panel_2.add(textField);
-		textField.setColumns(5);
-
 		JButton btnNewButton_3 = new JButton("Delete Rule(s)");
 		panel.add(btnNewButton_3);
-		
+
 		JButton btnSave = new JButton("Save");
 		panel.add(btnSave);
 
@@ -96,7 +89,7 @@ public class ConfGui {
 
 		model = new DefaultTableModel();
 		model.addColumn("Rules");
-		model.addColumn("Weight");
+		model.addColumn("Weight [-5;5]");
 		table = new JTable(model);
 
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
@@ -108,7 +101,31 @@ public class ConfGui {
 		panel_1.add(new JScrollPane(table), BorderLayout.CENTER);
 
 		JButton btnNewButton = new JButton("Add New Rule");
-		panel_1.add(btnNewButton, BorderLayout.SOUTH);
+
+		JPanel panel_2 = new JPanel();
+
+		panel_2.setLayout(new BorderLayout());
+
+		JPanel panel_4 = new JPanel();
+
+		JLabel labelRule = new JLabel("Rule: ");
+
+		panel_4.add(labelRule);
+
+		txtRuleName = new JTextField();
+		txtRuleName.setText("Name");
+		panel_4.add(txtRuleName);
+		txtRuleName.setColumns(5);
+
+		textField1 = new JTextField();
+		textField1.setText("Weight");
+		panel_4.add(textField1);
+		textField1.setColumns(5);
+
+		panel_2.add(panel_4, BorderLayout.CENTER);
+		panel_2.add(btnNewButton, BorderLayout.SOUTH);
+
+		panel_1.add(panel_2, BorderLayout.SOUTH);
 
 		textField_1.addActionListener(new ActionListener() {
 
@@ -121,8 +138,13 @@ public class ConfGui {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Add New Rule
-				// fileRules.createNewRule("LALALA", 4);
-				tabelUpdate();
+				if (Double.parseDouble(textField1.getText()) <= 5 && Double.parseDouble(textField1.getText()) >= -5
+						&& txtRuleName != null && txtRuleName.getText() != "Name" && txtRuleName.getText() != "") {
+					fileRules.createNewRule(txtRuleName.getText(), (int) Double.parseDouble(textField1.getText()));
+					txtRuleName.setText("Name");
+					textField1.setText("Weight");
+					tabelUpdate();
+				}
 			}
 		});
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -137,6 +159,7 @@ public class ConfGui {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Apply & close
+
 				RunGui run = new RunGui(fileRules, fileHam, fileSpam, false);
 				frame.setVisible(false);
 
@@ -145,26 +168,40 @@ public class ConfGui {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Delete Rule(s)
-				int column = 0;
-				int row = table.getSelectedRow();
-				String value = table.getModel().getValueAt(row, column).toString();
-				if (!value.equals(null)) {
-				fileRules.deleteRule(value);
-				// Get selected Rules & delete form list!!
-				// Delete Selected Rule on Jtable
-				// fileRules.deleteRule("LALALA");
+				if (!(table.getSelectedRow() == -1)) {
+					int column = 0;
+					int row = table.getSelectedRow();
+					String value = table.getModel().getValueAt(row, column).toString();
+					if (!value.equals(null)) {
+						fileRules.deleteRule(value);
+					}
+					tabelUpdate();
 				}
-				tabelUpdate();
 			}
 		});
 		btnSave.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				fileRules.replaceFileContent();				
+				fileRules.replaceFileContent();
 			}
 		});
+		table.getModel().addTableModelListener(new TableModelListener() {
 
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				if (e.getType() == TableModelEvent.UPDATE) {
+					double changed = Double.valueOf(table.getValueAt(e.getFirstRow(), e.getColumn()).toString());
+					if (e.getColumn() == 1) {
+						// Rules
+						if (changed <= 5.0 && changed >= -5.0) {
+							fileRules.getHmapRules().get(table.getValueAt(e.getFirstRow(), 0)).setRuleWeight(changed);
+							tabelUpdate();
+						}
+					}
+				}
+			}
+		});
 	}
 
 	private void tabelUpdate() {

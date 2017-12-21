@@ -91,14 +91,14 @@ public class RunGui {
 
 		// Setup table
 
-				model = new DefaultTableModel();
-				model.addColumn("Rules");
-				model.addColumn("Weight");
-				table = new JTable(model);
+		model = new DefaultTableModel();
+		model.addColumn("Rules");
+		model.addColumn("Weight [-5;5]");
+		table = new JTable(model);
 
-				TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
-				table.setRowSorter(sorter);
-				tabelUpdate();
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+		table.setRowSorter(sorter);
+		tabelUpdate();
 
 		//
 
@@ -158,7 +158,7 @@ public class RunGui {
 
 			}
 		});
-		
+
 		if (isAuto) {
 			runExperiment();
 		}
@@ -170,7 +170,7 @@ public class RunGui {
 			model.addRow(new Object[] { entry.getKey(), entry.getValue().getRuleWeight() });
 		}
 	}
-	
+
 	public void runExperiment() {
 		// Run With Auto config
 
