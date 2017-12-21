@@ -93,6 +93,9 @@ public class MainGui {
 
 		JButton btnReset = new JButton("Reset");
 		panel.add(btnReset);
+		
+		JButton btnConfigRules = new JButton("Config Rules");
+		panel.add(btnConfigRules);
 
 		JButton btnRunauto = new JButton("Run (Manual)");
 		panel.add(btnRunauto);
@@ -155,7 +158,7 @@ public class MainGui {
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
-					RunGui runGui = new RunGui(fileRules, fileHam, fileSpam);
+					RunGuiAuto runGui = new RunGuiAuto(fileRules, fileHam, fileSpam);
 					frame.setVisible(false);
 
 				} else {

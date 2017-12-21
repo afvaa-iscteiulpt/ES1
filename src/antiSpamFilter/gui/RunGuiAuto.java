@@ -23,9 +23,9 @@ import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
 import antiSpamFilter.Rule;
 
-public class RunGui {
+public class RunGuiAuto {
 
-	private JFrame frame;
+	private JFrame frmAuto;
 	private JTable table;
 	private FileRule fileRules;
 	private FileEmail fileHam;
@@ -35,28 +35,29 @@ public class RunGui {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 
-	public RunGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
+	public RunGuiAuto(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
 		this.fileHam = fileHam;
 		this.fileSpam = fileSpam;
 		initialize();
-		frame.setVisible(true);
+		frmAuto.setVisible(true);
 	}
 
 	private void initialize() {
 		// Gui Visuals
-		frame = new JFrame();
-		frame.setBounds(300, 300, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAuto = new JFrame();
+		frmAuto.setTitle("Auto");
+		frmAuto.setBounds(300, 300, 450, 300);
+		frmAuto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JSplitPane splitPane = new JSplitPane();
-		frame.getContentPane().add(splitPane, BorderLayout.CENTER);
+		frmAuto.getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
-		JButton btnNewButton_1 = new JButton("ReRun");
+		JButton btnNewButton_1 = new JButton("Run & Find best weights");
 		panel.add(btnNewButton_1);
 
 		lblNewLabel = new JLabel("FP: ");
@@ -64,12 +65,15 @@ public class RunGui {
 
 		lblNewLabel_1 = new JLabel("FN: ");
 		panel.add(lblNewLabel_1);
-
-		JButton btnNewButton_3 = new JButton("Show Spam File");
-		panel.add(btnNewButton_3);
-
-		JButton btnNewButton_2 = new JButton("Show Ham File");
-		panel.add(btnNewButton_2);
+		
+		JButton btnSaveRulesTo = new JButton("Save Rules To File");
+		panel.add(btnSaveRulesTo);
+		
+		JButton btnBack = new JButton("Back");
+		panel.add(btnBack);
+		
+		JButton btnExit = new JButton("Exit");
+		panel.add(btnExit);
 
 		JPanel panel_1 = new JPanel();
 		splitPane.setRightComponent(panel_1);
@@ -119,7 +123,7 @@ public class RunGui {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam);
-				frame.setVisible(false);
+				frmAuto.setVisible(false);
 			}
 		});
 
@@ -127,20 +131,6 @@ public class RunGui {
 			public void actionPerformed(ActionEvent arg0) {
 				// Run With Auto config
 				runExperiment();
-
-			}
-		});
-
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// show ham file
-				fileHam.showTableEmail();
-			}
-		});
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// show spam file
-				fileSpam.showTableEmail();
 
 			}
 		});

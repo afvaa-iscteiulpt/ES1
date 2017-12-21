@@ -55,17 +55,23 @@ public class ConfGui {
 		frame.getContentPane().add(panel, BorderLayout.WEST);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
-		JButton btnNewButton_1 = new JButton("Generate Random Weights");
-		panel.add(btnNewButton_1);
-
 		JButton btnNewButton_3 = new JButton("Delete Rule(s)");
 		panel.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Show Spam File");
+		panel.add(btnNewButton_4);
+		
+		JButton btnNewButton_5 = new JButton("Show Ham File");
+		panel.add(btnNewButton_5);
 
 		JButton btnSave = new JButton("Save");
 		panel.add(btnSave);
-
-		JButton btnNewButton_2 = new JButton("Run");
-		panel.add(btnNewButton_2);
+		
+		JButton btnBack = new JButton("Back");
+		panel.add(btnBack);
+		
+		JButton btnExit = new JButton("Exit");
+		panel.add(btnExit);
 
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
@@ -145,24 +151,6 @@ public class ConfGui {
 					textField1.setText("Weight");
 					tabelUpdate();
 				}
-			}
-		});
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Generate Random Weights
-				fileRules.generateRandomWeightsForEachRule();
-				// Update table
-				tabelUpdate();
-
-			}
-		});
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Apply & close
-
-				RunGui run = new RunGui(fileRules, fileHam, fileSpam);
-				frame.setVisible(false);
-
 			}
 		});
 		btnNewButton_3.addActionListener(new ActionListener() {
