@@ -140,7 +140,7 @@ public class ConfGui {
 				// Add New Rule
 				if (Double.parseDouble(textField1.getText()) <= 5 && Double.parseDouble(textField1.getText()) >= -5
 						&& txtRuleName != null && txtRuleName.getText() != "Name" && txtRuleName.getText() != "") {
-					fileRules.createNewRule(txtRuleName.getText(), (int) Double.parseDouble(textField1.getText()));
+					fileRules.createNewRule(txtRuleName.getText(), textField1.getText());
 					txtRuleName.setText("Name");
 					textField1.setText("Weight");
 					tabelUpdate();
@@ -173,7 +173,8 @@ public class ConfGui {
 					int row = table.getSelectedRow();
 					String value = table.getModel().getValueAt(row, column).toString();
 					if (!value.equals(null)) {
-						fileRules.deleteRule(value);
+						String[] arrayDel = {value};
+						fileRules.deleteRules(arrayDel);
 					}
 					tabelUpdate();
 				}
@@ -195,7 +196,7 @@ public class ConfGui {
 					if (e.getColumn() == 1) {
 						// Rules
 						if (changed <= 5.0 && changed >= -5.0) {
-							fileRules.getHmapRules().get(table.getValueAt(e.getFirstRow(), 0)).setRuleWeight(changed);
+							fileRules.getHmapRules().get(table.getValueAt(e.getFirstRow(), 0)).setRuleWeight(table.getValueAt(e.getFirstRow(), e.getColumn()).toString());
 							tabelUpdate();
 						}
 					}

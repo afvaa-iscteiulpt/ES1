@@ -146,7 +146,7 @@ public class MainGui {
 						&& fileRules.getStatusFile() == StatusFile.APPROVED
 						&& fileHam.getStatusFile() == StatusFile.APPROVED
 						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
-					AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
+					AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileHam, fileSpam, fileRules);
 
 					AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
 					try {

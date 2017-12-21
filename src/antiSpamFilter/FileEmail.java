@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import antiSpamFilterGui.EmailTableGUI;
+import antiSpamFilter.gui.EmailTableGUI;
+
 
 public class FileEmail extends FileAbstract {
 
