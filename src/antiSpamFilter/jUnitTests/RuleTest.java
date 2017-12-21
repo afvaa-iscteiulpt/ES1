@@ -4,10 +4,9 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
-
-import antiSpamFilter.Rule;
-
 import org.junit.runners.MethodSorters;
+
+import antiSpamFilter.api.Rule;
 
 import org.junit.Test;
 

@@ -11,8 +11,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import antiSpamFilter.FileRule;
-import antiSpamFilter.Rule;
+import antiSpamFilter.api.FileRule;
+import antiSpamFilter.api.Rule;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FileRuleTest {
@@ -75,11 +75,12 @@ public class FileRuleTest {
 
 	@Test
 	public void test6ReplaceFileContent() {
+	
 		instance.replaceFileContent();
 		
 		FileRule newFileRule = new FileRule();
-		
-		Assert.assertTrue(instance.getHmapRulesString() == newFileRule.getHmapRulesString());	
+	
+		Assert.assertTrue(instance.getHmapRulesString() != newFileRule.getHmapRulesString());	
 	}
 
 	@Test
