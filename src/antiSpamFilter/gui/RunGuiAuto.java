@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Map.Entry;
 
 import javax.swing.JButton;
@@ -19,8 +20,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
+import antiSpamFilter.AntiSpamFilterProblem;
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
+import antiSpamFilter.Main;
 import antiSpamFilter.Rule;
 
 public class RunGuiAuto {
@@ -67,12 +71,27 @@ public class RunGuiAuto {
 		panel.add(lblNewLabel_1);
 		
 		JButton btnSaveRulesTo = new JButton("Save Rules To File");
+		btnSaveRulesTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileRules.replaceFileContent();
+			}
+		});
 		panel.add(btnSaveRulesTo);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainGui mainGui = new MainGui();
+			}
+		});
 		panel.add(btnBack);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		panel.add(btnExit);
 
 		JPanel panel_1 = new JPanel();
@@ -122,7 +141,7 @@ public class RunGuiAuto {
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam);
+				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam,1);
 				frmAuto.setVisible(false);
 			}
 		});
@@ -134,7 +153,6 @@ public class RunGuiAuto {
 
 			}
 		});
-		runExperiment();
 	}
 
 	private void tabelUpdate() {
@@ -146,6 +164,15 @@ public class RunGuiAuto {
 
 	public void runExperiment() {
 		// Run
+		AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileHam, fileSpam, fileRules);
+
+		AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
+		try {
+			antiSpamConfig.runSolution();
+
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		double FP = fileHam.calculateFPorFN(fileRules.getHmapRules());
 		double FN = fileSpam.calculateFPorFN(fileRules.getHmapRules());
 		lblNewLabel.setText("FP: " + FP); // actualizar os valores

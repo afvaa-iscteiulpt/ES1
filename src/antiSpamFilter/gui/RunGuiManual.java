@@ -21,6 +21,7 @@ import javax.swing.table.TableRowSorter;
 
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
+import antiSpamFilter.Main;
 import antiSpamFilter.Rule;
 
 public class RunGuiManual {
@@ -58,6 +59,12 @@ public class RunGuiManual {
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton btnGenerateRandomWeights = new JButton("Generate Random Weights");
+		btnGenerateRandomWeights.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileRules.generateRandomWeightsForEachRule();
+				tabelUpdate();
+			}
+		});
 		panel.add(btnGenerateRandomWeights);
 		
 		JButton btnCalculateFp = new JButton("Calculate FP & FN");
@@ -70,6 +77,19 @@ public class RunGuiManual {
 		panel.add(lblNewLabel_1);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainGui gui = new MainGui();
+			}
+		});
+		
+		JButton btnSaveRulesTo = new JButton("Save Rules To File");
+		btnSaveRulesTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileRules.replaceFileContent();
+			}
+		});
+		panel.add(btnSaveRulesTo);
 		panel.add(btnBack);
 		
 		JButton btnExit = new JButton("Exit");
@@ -111,6 +131,25 @@ public class RunGuiManual {
 		table.setColumnSelectionAllowed(true);
 
 		// Action Listeners
+		btnExit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);	
+			}
+		});
+		
+		btnCalculateFp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				double FP = fileHam.calculateFPorFN(fileRules.getHmapRules());
+				double FN = fileSpam.calculateFPorFN(fileRules.getHmapRules());
+				lblNewLabel.setText("FP: " + FP); // actualizar os valores
+				lblNewLabel_1.setText("FN: " + FN); // actualizar os valores
+				tabelUpdate();				
+			}
+		});
 
 		textField.addActionListener(new ActionListener() {
 
@@ -122,7 +161,7 @@ public class RunGuiManual {
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam);
+				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam,2);
 				frmMaual.setVisible(false);
 			}
 		});

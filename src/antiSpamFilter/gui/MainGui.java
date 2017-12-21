@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import org.apache.commons.lang3.concurrent.ConcurrentException;
+
 import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.AntiSpamFilterProblem;
 import antiSpamFilter.FileEmail;
@@ -95,6 +97,12 @@ public class MainGui {
 		panel.add(btnReset);
 		
 		JButton btnConfigRules = new JButton("Config Rules");
+		btnConfigRules.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam,0);
+				frame.setVisible(false);
+			}
+		});
 		panel.add(btnConfigRules);
 
 		JButton btnRunauto = new JButton("Run (Manual)");
@@ -149,15 +157,6 @@ public class MainGui {
 						&& fileRules.getStatusFile() == StatusFile.APPROVED
 						&& fileHam.getStatusFile() == StatusFile.APPROVED
 						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
-					AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileHam, fileSpam, fileRules);
-
-					AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
-					try {
-						antiSpamConfig.runSolution();
-
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
 					RunGuiAuto runGui = new RunGuiAuto(fileRules, fileHam, fileSpam);
 					frame.setVisible(false);
 
@@ -170,7 +169,6 @@ public class MainGui {
 
 		btnRunauto.addActionListener(new ActionListener() {
 
-			private ConfGui confgui;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,8 +177,8 @@ public class MainGui {
 						&& fileRules.getStatusFile() == StatusFile.APPROVED
 						&& fileHam.getStatusFile() == StatusFile.APPROVED
 						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
-					confgui = new ConfGui(fileRules, fileHam, fileSpam);
 					// runGui = new RunGui(fileRules, fileHam, fileSpam);
+					RunGuiManual manual = new RunGuiManual(fileRules, fileHam, fileSpam);
 					frame.setVisible(false);
 				} else {
 					// Display popup Warning the user

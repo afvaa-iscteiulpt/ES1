@@ -33,14 +33,16 @@ public class ConfGui {
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
 	private JTextField textField_1;
-	DefaultTableModel model;
+	private DefaultTableModel model;
 	private JTextField txtRuleName;
 	private JTextField textField1;
+	private int tipo;
 
-	public ConfGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
+	public ConfGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam, int tipo) {
 		this.fileRules = fileRules;
 		this.fileHam = fileHam;
 		this.fileSpam = fileSpam;
+		this.tipo = tipo;
 		initialize();
 	}
 
@@ -59,6 +61,11 @@ public class ConfGui {
 		panel.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Show Spam File");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileSpam.showTableEmail();
+			}
+		});
 		panel.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Show Ham File");
@@ -68,6 +75,21 @@ public class ConfGui {
 		panel.add(btnSave);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tipo==0) {
+					//Menu
+					MainGui menu = new MainGui();
+				}
+				else if (tipo==1) {
+					//GuiAuto
+					RunGuiAuto auto = new RunGuiAuto(fileRules, fileHam, fileSpam);
+				} else if (tipo == 2) {
+					//GuiManual
+					RunGuiManual manual = new RunGuiManual(fileRules, fileHam, fileSpam);
+				}
+			}
+		});
 		panel.add(btnBack);
 		
 		JButton btnExit = new JButton("Exit");
