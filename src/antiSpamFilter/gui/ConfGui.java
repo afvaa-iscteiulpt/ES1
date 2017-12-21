@@ -160,7 +160,7 @@ public class ConfGui {
 			public void actionPerformed(ActionEvent e) {
 				// Apply & close
 
-				RunGui run = new RunGui(fileRules, fileHam, fileSpam, false);
+				RunGui run = new RunGui(fileRules, fileHam, fileSpam);
 				frame.setVisible(false);
 
 			}

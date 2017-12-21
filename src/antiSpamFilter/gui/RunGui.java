@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Map.Entry;
 
 import javax.swing.JButton;
@@ -20,39 +19,26 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
-import antiSpamFilter.AntiSpamFilterProblem;
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
 import antiSpamFilter.Rule;
-import antiSpamFilter.StatusFile;
 
 public class RunGui {
 
 	private JFrame frame;
 	private JTable table;
-	private ConfGui confGui;
 	private FileRule fileRules;
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
-	private AntiSpamFilterProblem problem;
 	private JTextField textField;
 	private DefaultTableModel model;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
-	private boolean isAuto;
 
-	public RunGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam, boolean isAuto) {
+	public RunGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
 		this.fileHam = fileHam;
 		this.fileSpam = fileSpam;
-		this.isAuto = isAuto;
-		if (fileRules != null && fileHam != null && fileSpam != null && fileRules.getStatusFile() == StatusFile.APPROVED
-				&& fileHam.getStatusFile() == StatusFile.APPROVED && fileSpam.getStatusFile() == StatusFile.APPROVED) {
-			problem = new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
-		} else {
-			System.out.println("Problem Initializing AntiSpamFilter...");
-		}
 		initialize();
 		frame.setVisible(true);
 	}
@@ -132,7 +118,7 @@ public class RunGui {
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				confGui = new ConfGui(fileRules, fileHam, fileSpam);
+				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam);
 				frame.setVisible(false);
 			}
 		});
@@ -158,10 +144,7 @@ public class RunGui {
 
 			}
 		});
-
-		if (isAuto) {
-			runExperiment();
-		}
+		runExperiment();
 	}
 
 	private void tabelUpdate() {
@@ -172,15 +155,7 @@ public class RunGui {
 	}
 
 	public void runExperiment() {
-		// Run With Auto config
-
-		AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
-		try {
-			antiSpamConfig.runSolution();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		// Run
 		double FP = fileHam.calculateFPorFN(fileRules.getHmapRules());
 		double FN = fileSpam.calculateFPorFN(fileRules.getHmapRules());
 		lblNewLabel.setText("FP: " + FP); // actualizar os valores

@@ -1,13 +1,13 @@
-  package antiSpamFilter.gui.junitTests;
+package antiSpamFilter.gui.jUnit;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class RungGuiTest {
+public class MainGuiTest {
 
 	@Test
-	public void test() {
+	public void testMainGui() {
 		fail("Not yet implemented");
 	}
 

@@ -1,10 +1,10 @@
-package antiSpamFilter.gui.junitTests;
+package antiSpamFilter.gui.jUnit;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class MainGuiTest {
+public class ConfGuiTest {
 
 	@Test
 	public void test() {
