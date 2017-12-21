@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
 import antiSpamFilter.StatusFile;
@@ -144,7 +146,7 @@ public class MainGui {
 						&& fileRules.getStatusFile() == StatusFile.APPROVED
 						&& fileHam.getStatusFile() == StatusFile.APPROVED
 						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
-					runGui = new RunGui(fileRules, fileHam, fileSpam);
+					runGui = new RunGui(fileRules, fileHam, fileSpam, true);
 					frame.setVisible(false);
 
 				} else {

@@ -35,17 +35,21 @@ public class RunGui {
 	private FileRule fileRules;
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
-	AntiSpamFilterProblem problem;
+	private AntiSpamFilterProblem problem;
 	private JTextField textField;
+	private DefaultTableModel model;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private boolean isAuto;
 
-	public RunGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
+	public RunGui(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam, boolean isAuto) {
 		this.fileRules = fileRules;
 		this.fileHam = fileHam;
 		this.fileSpam = fileSpam;
+		this.isAuto = isAuto;
 		if (fileRules != null && fileHam != null && fileSpam != null && fileRules.getStatusFile() == StatusFile.APPROVED
 				&& fileHam.getStatusFile() == StatusFile.APPROVED && fileSpam.getStatusFile() == StatusFile.APPROVED) {
 			problem = new AntiSpamFilterProblem(fileRules.getNumberOfLines(), fileHam, fileSpam, fileRules);
-			problem.createSolution();
 		} else {
 			System.out.println("Problem Initializing AntiSpamFilter...");
 		}
@@ -69,10 +73,10 @@ public class RunGui {
 		JButton btnNewButton_1 = new JButton("ReRun");
 		panel.add(btnNewButton_1);
 
-		JLabel lblNewLabel = new JLabel("FP: ");
+		lblNewLabel = new JLabel("FP: ");
 		panel.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("FN: ");
+		lblNewLabel_1 = new JLabel("FN: ");
 		panel.add(lblNewLabel_1);
 
 		JButton btnNewButton_3 = new JButton("Show Spam File");
@@ -86,16 +90,15 @@ public class RunGui {
 		panel_1.setLayout(new BorderLayout(0, 0));
 
 		// Setup table
-		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Rules");
-		model.addColumn("Weight");
-		for (Entry<String, Rule> entry : fileRules.getHmapRules().entrySet()) {
-			model.addRow(new Object[] { entry.getKey(), entry.getValue().getRuleWeight() });
-		}
-		JTable table = new JTable(model);
 
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
-		table.setRowSorter(sorter);
+				model = new DefaultTableModel();
+				model.addColumn("Rules");
+				model.addColumn("Weight");
+				table = new JTable(model);
+
+				TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+				table.setRowSorter(sorter);
+				tabelUpdate();
 
 		//
 
@@ -137,17 +140,8 @@ public class RunGui {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Run With Auto config
+				runExperiment();
 
-				AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
-				try {
-					antiSpamConfig.runSolution();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				double FP = fileHam.calculateFPorFN(fileRules.getHmapRules());
-				double FN = fileSpam.calculateFPorFN(fileRules.getHmapRules());
-				lblNewLabel.setText("FP: " + FP); // actualizar os valores
-				lblNewLabel_1.setText("FN: " + FN); // actualizar os valores
 			}
 		});
 
@@ -164,6 +158,34 @@ public class RunGui {
 
 			}
 		});
+		
+		if (isAuto) {
+			runExperiment();
+		}
+	}
+
+	private void tabelUpdate() {
+		model.setRowCount(0);
+		for (Entry<String, Rule> entry : fileRules.getHmapRules().entrySet()) {
+			model.addRow(new Object[] { entry.getKey(), entry.getValue().getRuleWeight() });
+		}
+	}
+	
+	public void runExperiment() {
+		// Run With Auto config
+
+		AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
+		try {
+			antiSpamConfig.runSolution();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		double FP = fileHam.calculateFPorFN(fileRules.getHmapRules());
+		double FN = fileSpam.calculateFPorFN(fileRules.getHmapRules());
+		lblNewLabel.setText("FP: " + FP); // actualizar os valores
+		lblNewLabel_1.setText("FN: " + FN); // actualizar os valores
+		tabelUpdate();
 	}
 
 }

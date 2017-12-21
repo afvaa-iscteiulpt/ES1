@@ -67,8 +67,11 @@ public class ConfGui {
 
 		JButton btnNewButton_3 = new JButton("Delete Rule(s)");
 		panel.add(btnNewButton_3);
+		
+		JButton btnSave = new JButton("Save");
+		panel.add(btnSave);
 
-		JButton btnNewButton_2 = new JButton("Save & Run");
+		JButton btnNewButton_2 = new JButton("Run");
 		panel.add(btnNewButton_2);
 
 		JPanel panel_1 = new JPanel();
@@ -134,8 +137,7 @@ public class ConfGui {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Apply & close
-				fileRules.replaceFileContent();
-				RunGui run = new RunGui(fileRules, fileHam, fileSpam);
+				RunGui run = new RunGui(fileRules, fileHam, fileSpam, false);
 				frame.setVisible(false);
 
 			}
@@ -153,6 +155,13 @@ public class ConfGui {
 				// fileRules.deleteRule("LALALA");
 				}
 				tabelUpdate();
+			}
+		});
+		btnSave.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fileRules.replaceFileContent();				
 			}
 		});
 
