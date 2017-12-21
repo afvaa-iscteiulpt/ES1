@@ -15,6 +15,16 @@ public class Main {
 
 		ConsoleMenu consoleMenu = new ConsoleMenu();
 		
+		
+		
+		//HVFile hvfile = new HVFile();
+
+		//LatexFile l = new LatexFile();
+		//hvfile.compile();
+		
+		
+		//ystem.out.println(hvfile.compile());
+		
 		//runH();
 		
 		  
