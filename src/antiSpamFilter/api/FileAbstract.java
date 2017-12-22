@@ -1,4 +1,4 @@
-package antiSpamFilter;
+package antiSpamFilter.api;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

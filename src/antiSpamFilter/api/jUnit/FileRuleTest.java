@@ -1,4 +1,4 @@
-package antiSpamFilter.jUnitTests;
+package antiSpamFilter.api.jUnit;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +13,7 @@ import org.junit.runners.MethodSorters;
 
 import antiSpamFilter.api.FileRule;
 import antiSpamFilter.api.Rule;
+import antiSpamFilter.api.TypeFile;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FileRuleTest {
@@ -96,4 +97,13 @@ public class FileRuleTest {
 		Assert.assertTrue(!instance.getHmapRulesString().isEmpty() && instance.getHmapRulesString() instanceof String);	
 	}
 
+	@Test
+	public void test9getNumberOfLines() {
+		Assert.assertTrue(instance.getNumberOfLines() != 0);	
+	}
+	
+	@Test
+	public void test10getTypeFile() {
+		Assert.assertTrue(instance.getTypeFile() instanceof TypeFile);	
+	}
 }

@@ -20,13 +20,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
-import antiSpamFilter.AntiSpamFilterProblem;
-import antiSpamFilter.FileEmail;
-import antiSpamFilter.FileRule;
-import antiSpamFilter.HVFile;
-import antiSpamFilter.LatexFile;
-import antiSpamFilter.Rule;
+import antiSpamFilter.api.AntiSpamFilterAutomaticConfiguration;
+import antiSpamFilter.api.AntiSpamFilterProblem;
+import antiSpamFilter.api.FileEmail;
+import antiSpamFilter.api.FileRule;
+import antiSpamFilter.api.HVFile;
+import antiSpamFilter.api.LatexFile;
+import antiSpamFilter.api.Rule;
 
 public class RunGuiAuto {
 

@@ -1,10 +1,10 @@
-package antiSpamFilter;
+package antiSpamFilter.api;
 
 public class Email {
 
 	private String fullPath;
 	private String id;
-	private String[] appliedRules;
+	private String[] appliedRules = {};
 	private TypeEmail type = null;
 	private Boolean isFPFN = null;
 	private double currentSum;

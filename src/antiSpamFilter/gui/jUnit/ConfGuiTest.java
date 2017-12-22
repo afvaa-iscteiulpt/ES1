@@ -1,12 +1,10 @@
 package antiSpamFilter.gui.jUnit;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-import antiSpamFilter.FileEmail;
-import antiSpamFilter.FileRule;
-import antiSpamFilter.TypeEmail;
+import antiSpamFilter.api.FileEmail;
+import antiSpamFilter.api.FileRule;
+import antiSpamFilter.api.TypeEmail;
 import antiSpamFilter.gui.ConfGui;
 
 public class ConfGuiTest {

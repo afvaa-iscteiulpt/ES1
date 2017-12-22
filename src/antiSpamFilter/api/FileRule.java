@@ -1,4 +1,4 @@
-package antiSpamFilter;
+package antiSpamFilter.api;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,9 +31,11 @@ public class FileRule extends FileAbstract {
 			String ruleName = columnDetail[0];
 			
 			String ruleWeight = "0";
-			if(columnDetail[1] != null)
-				ruleWeight = columnDetail[1];
-		
+			if(columnDetail .length > 1) {
+				if(columnDetail[1] != null)
+					ruleWeight = columnDetail[1];
+			}
+			
 			Rule rule = new Rule();
 
 			rule.setRuleName(ruleName);
@@ -135,5 +137,17 @@ public class FileRule extends FileAbstract {
 		} else {
 			return "Rule not found!\n";
 		}
+	}
+
+	public void setWeights(String[] bestWeights) {
+		
+		int i = 0;
+		for (String key : hmapRules.keySet()) {
+	        Rule r = hmapRules.get(key);
+	        
+	        r.setRuleWeight(String.valueOf(bestWeights[i]));
+	        i++;
+	    }
+		
 	}
 }

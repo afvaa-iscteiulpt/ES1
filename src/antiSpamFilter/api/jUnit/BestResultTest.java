@@ -1,0 +1,50 @@
+package antiSpamFilter.api.jUnit;
+
+import static org.junit.Assert.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
+import antiSpamFilter.api.BestResult;
+import antiSpamFilter.api.FileRule;
+import antiSpamFilter.api.Rule;
+import antiSpamFilter.api.TypeFile;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class BestResultTest {
+
+	private static BestResult instance = null;
+	private static String[] bestWeitghs = new String[3];
+	
+	@BeforeClass
+	public static void setUpBestResult() {
+		
+		bestWeitghs[0] = "2.3";
+		bestWeitghs[1] = "3.1";
+		bestWeitghs[2] = "0.3";
+		
+		instance = new BestResult(2.0, 3.1, bestWeitghs);
+	}
+
+	@Test
+	public void testGetBestWeights() {
+		Assert.assertTrue(instance.getBestWeights() == bestWeitghs && instance.getBestWeights() instanceof String[]);
+	}
+
+	@Test
+	public void testGetDoubleBestFp() {
+		Assert.assertTrue(instance.getDoubleBestFp() == 2.0);
+	}
+
+	@Test
+	public void testGetDoubleBestFn() {
+		Assert.assertTrue(instance.getDoubleBestFn() == 3.1);
+	}
+
+}

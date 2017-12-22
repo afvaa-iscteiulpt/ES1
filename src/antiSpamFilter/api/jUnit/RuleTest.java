@@ -1,4 +1,4 @@
-package antiSpamFilter.jUnitTests;
+package antiSpamFilter.api.jUnit;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;

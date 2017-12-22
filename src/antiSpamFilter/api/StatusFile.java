@@ -1,4 +1,4 @@
-package antiSpamFilter;
+package antiSpamFilter.api;
 
 public enum StatusFile {
 	APPROVED, 

@@ -19,10 +19,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import antiSpamFilter.FileEmail;
-import antiSpamFilter.FileRule;
-import antiSpamFilter.Main;
-import antiSpamFilter.Rule;
+import antiSpamFilter.api.FileEmail;
+import antiSpamFilter.api.FileRule;
+import antiSpamFilter.api.Rule;
 
 public class RunGuiManual {
 

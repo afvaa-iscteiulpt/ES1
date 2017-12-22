@@ -1,4 +1,4 @@
-package antiSpamFilter;
+package antiSpamFilter.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -290,17 +290,21 @@ public class ConsoleMenu {
 			antiSpamConfig.runSolution();
 
 			// results[FP, FN, WEIGTHS to put in hashmap]
-			String[] results = antiSpamConfig.checkBestSolution();
+			BestResult results = antiSpamConfig.checkBestSolution();
+			
+			fileRules.setWeights(results.getBestWeights());
+			
+			fileHam.setFpFn(results.getDoubleBestFn());
+			fileSpam.setFpFn(results.getDoubleBestFp());
+		
+			System.out.println("\nFP = " + results.getDoubleBestFp() + "\nFN = "
+					+ results.getDoubleBestFn() + "\n");
 
 		} catch (IOException e) {
 			System.out.println("Something wrong with current problem!");
 			System.exit(0);
 			e.printStackTrace();
 		}
-
-		// save to fileRules
-		// print FP e FN
-		// Sysout
 		
 		jmetalalreadyrunned = true;
 	}
