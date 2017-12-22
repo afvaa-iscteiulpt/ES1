@@ -26,6 +26,9 @@ public class BestResultTest {
 	private static BestResult instance = null;
 	private static String[] bestWeitghs = new String[3];
 	
+	/**
+	 * Setting up for the tests
+	 */
 	@BeforeClass
 	public static void setUpBestResult() {
 		
@@ -36,16 +39,26 @@ public class BestResultTest {
 		instance = new BestResult(2.0, 3.1, bestWeitghs);
 	}
 
+	
+	/**
+	 * Testing getBestWeights()
+	 */
 	@Test
 	public void testGetBestWeights() {
 		Assert.assertTrue(instance.getBestWeights() == bestWeitghs && instance.getBestWeights() instanceof String[]);
 	}
 
+	/**
+	 * Testing getDoubleBestFp()
+	 */
 	@Test
 	public void testGetDoubleBestFp() {
 		Assert.assertTrue(instance.getDoubleBestFp() == 2.0);
 	}
 
+	/**
+	 * Testing getDoubleBestFn()
+	 */
 	@Test
 	public void testGetDoubleBestFn() {
 		Assert.assertTrue(instance.getDoubleBestFn() == 3.1);

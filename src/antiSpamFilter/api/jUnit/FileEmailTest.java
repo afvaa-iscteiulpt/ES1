@@ -33,23 +33,37 @@ public class FileEmailTest {
 	private static FileEmail instanceHam = null;
 	private static FileEmail instanceSpam = null;
 	
+	
+	/**
+	 * Setting up for the tests
+	 */
 	@BeforeClass
 	public static void setUpEmail() {
 		instanceHam = new FileEmail(TypeEmail.HAM);
 		instanceSpam = new FileEmail(TypeEmail.SPAM);
 	}
 	
+	/**
+	 * Testing getTypeEmail()
+	 */
 	@Test
 	public void test1GetTypeEmail() {
 		Assert.assertTrue(instanceHam.getTypeEmail() == TypeEmail.HAM);
 		Assert.assertTrue(instanceSpam.getTypeEmail() == TypeEmail.SPAM);
 	}
 
+	/**
+	 * Testing getLinedListEmails()
+	 */
 	@Test
 	public void test2GetLinkedListEmails() {
 		Assert.assertTrue(instanceHam.getLinkedListEmails() instanceof LinkedList<?>);
 	}
 	
+	
+	/**
+	 * Testing resetList()
+	 */
 	@Test
 	public void test3ResetList() {
 		instanceHam.resetList();
@@ -57,6 +71,9 @@ public class FileEmailTest {
 		Assert.assertTrue(instanceHam.getLinkedListEmails().isEmpty());
 	}
 
+	/**
+	 * Testing the getFpFn()
+	 */
 	@Test
 	public void test5SetFpFn() {
 		instanceHam.setFpFn(10);
