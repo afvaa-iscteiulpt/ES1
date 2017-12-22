@@ -4,11 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class RunGuiTest {
+public class RunGuiManualTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		RunGuiManualTest manual = new RunGuiManualTest();
+		//fail("Not yet implemented");
 	}
 
 }

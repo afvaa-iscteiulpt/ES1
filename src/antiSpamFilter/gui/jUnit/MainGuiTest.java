@@ -4,11 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import antiSpamFilter.gui.MainGui;
+
 public class MainGuiTest {
 
 	@Test
 	public void testMainGui() {
-		fail("Not yet implemented");
+		MainGui gui = new MainGui();
+		//fail("Not yet implemented");
 	}
 
 }

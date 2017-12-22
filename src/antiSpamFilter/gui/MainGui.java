@@ -77,6 +77,7 @@ public class MainGui {
 		JButton btnNewButton_1 = new JButton("Spam");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				fileSpam.showTableEmail();
 			}
 		});
 		panel_2.add(btnNewButton_1);
