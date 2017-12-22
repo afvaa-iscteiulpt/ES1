@@ -1,0 +1,10 @@
+############# Sprint no inicio do projeto: ############# 
+Desde o inicio do projeto, os outros dois alunos desistiram de o fazer, ficando assim com a avaliação para exame.
+Desta forma, tivemos de nos dividir de maneira a conseguirmos entregar tudo no final.
+Para isso dividimo-nos em back-end e front-end, ficando assim o back-end (api) ao encargo do André Vieira, e o front-end (gui) ao encargo do Diogo Pires.
+
+############# Sprint no final do projeto: ############# 
+Com a nossa equipa reduzida a metade não foi possivel efetuar tudo o que é predido para a avaliação. 
+Nomeadamente não tivemos tempo para efetuar o cooverage de 75%. E o SCRUM não foi completamente usado e implementado
+durante o semestre. 
+No entanto todo o trabalho está  funcionar e ficamos bastante contentes com o resultado e com o nosso esforço para entregar tudo o resto. 
