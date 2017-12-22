@@ -18,6 +18,10 @@ import antiSpamFilter.api.TypeFile;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BestResultTest {
+	
+	/**
+	 * JUnit Tests For the antiSpamFilter.api.BestResult
+	 */
 
 	private static BestResult instance = null;
 	private static String[] bestWeitghs = new String[3];

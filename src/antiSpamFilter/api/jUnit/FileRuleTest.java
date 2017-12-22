@@ -18,6 +18,10 @@ import antiSpamFilter.api.TypeFile;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FileRuleTest {
 
+	/**
+	 * JUnit Tests For the antiSpamFilter.api.FileRule
+	 */
+	
 	private static FileRule instance = null;
 	
 	@BeforeClass

@@ -10,7 +10,9 @@ import antiSpamFilter.api.TypeFile;
 import static org.junit.Assert.*;
 
 public class TypeFileTest {
-
+	/**
+	 * JUnit Tests For the antiSpamFilter.api.TypeFile
+	 */
 	@Test
 	public void test() {
 		assertNotNull(TypeFile.valueOf("EMAIL"));

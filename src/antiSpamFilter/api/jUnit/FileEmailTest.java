@@ -26,6 +26,9 @@ import antiSpamFilter.api.TypeFile;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FileEmailTest {
+	/**
+	 * JUnit Tests For the antiSpamFilter.api.FileEmail
+	 */
 
 	private static FileEmail instanceHam = null;
 	private static FileEmail instanceSpam = null;

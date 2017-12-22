@@ -12,7 +12,11 @@ import org.junit.Test;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RuleTest {
-
+	/**
+	 * JUnit Tests For the antiSpamFilter.api.Rule
+	 */
+	
+	
 	private static Rule instance = null;
 	
 	@BeforeClass

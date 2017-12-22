@@ -21,7 +21,9 @@ import org.junit.Test;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmailTest {
-
+	/**
+	 * JUnit Tests For the antiSpamFilter.api.Email
+	 */
 	private static Email instanceHam = null;
 	private static Email instanceSpam = null;
 	
