@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import antiSpamFilter.TypeEmail;
+import antiSpamFilter.api.TypeEmail;
 
 public class TypeEmailTest {
 

@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 
-import antiSpamFilter.TypeFile;
+import antiSpamFilter.api.TypeFile;
+
 import static org.junit.Assert.*;
 
 public class TypeFileTest {

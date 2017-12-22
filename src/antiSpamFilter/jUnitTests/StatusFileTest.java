@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import antiSpamFilter.StatusFile;
+import antiSpamFilter.api.StatusFile;
 
 public class StatusFileTest {
 
