@@ -38,6 +38,6 @@ O único erro encontrado durante a execução é na compilação do HV. Este erro e po
 Com a nossa equipa reduzida a metade não foi possivel efetuar tudo o que é predido para a avaliação. 
 Nomeadamente não tivemos tempo para efetuar o cooverage de 75%. E o SCRUM não foi completamente usado e implementado durante o desenvolvimento do projeto. 
 No entanto todo o trabalho está a funcionar e ficamos bastante contentes com o resultado e com o nosso esforço para entregar tudo o resto.
-```
+``` 
 
 
