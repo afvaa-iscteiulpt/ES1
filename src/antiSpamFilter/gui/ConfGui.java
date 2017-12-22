@@ -27,6 +27,11 @@ import antiSpamFilter.api.FileEmail;
 import antiSpamFilter.api.FileRule;
 import antiSpamFilter.api.Rule;
 
+/**
+ * Gui da janela configure rules
+ * 
+ */
+
 public class ConfGui {
 
 	private JFrame frame;
@@ -48,6 +53,10 @@ public class ConfGui {
 		initialize();
 	}
 
+	/**
+	 * Inicializador
+	 * Cria a gui, elementos e action listeners para correr funções da API
+	 */
 	private void initialize() {
 		// Gui Visuals
 		frame = new JFrame();

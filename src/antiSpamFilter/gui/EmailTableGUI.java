@@ -7,8 +7,16 @@ import javax.swing.JTable;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+/**
+ * Gui da janela table Email
+ * 
+ */
 public class EmailTableGUI extends JPanel {
 	
+	/**
+	 * Inicializador
+	 * Cria a gui para mostrar a tabela gerada com os emails
+	 */
     public EmailTableGUI(Object[][] data, String[] columnNames) {
         super(new GridLayout(1,0));
         

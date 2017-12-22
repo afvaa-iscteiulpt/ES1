@@ -2,6 +2,7 @@ package antiSpamFilter.api;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -22,6 +23,7 @@ public class HVFile implements JmetalFiles {
 		String result = "";
 
 		try {
+			
 			String ss = null;
 			Runtime obj = null;
 			String current = new java.io.File(".").getCanonicalPath();
@@ -30,8 +32,6 @@ public class HVFile implements JmetalFiles {
 
 			//C:/PROGRA~1/R/R-3.4.3/bin/
 			Process p = Runtime.getRuntime().exec("cmd.exe /c C:\\PROGRA~1\\R\\R-3.4.3\\bin\\Rscript.exe " + fullPath);
-			
-			System.out.println("cmd.exe /c C:\\PROGRA~1\\R\\R-3.4.3\\bin\\Rscript.exe " + fullPath);
 			
 			BufferedWriter writeer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
 			writeer.write("dir");

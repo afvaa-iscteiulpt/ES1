@@ -29,6 +29,10 @@ import antiSpamFilter.api.HVFile;
 import antiSpamFilter.api.LatexFile;
 import antiSpamFilter.api.Rule;
 
+/**
+ * Gui da janela de processamento automatico
+ * 
+ */
 public class RunGuiAuto {
 
 	private JFrame frmAuto;
@@ -42,6 +46,10 @@ public class RunGuiAuto {
 	private JLabel lblNewLabel_1;
 	private boolean jmetalalreadyrunned = false;
 
+	/**
+	 * Inicializador
+	 * Cria a gui para mostrar a janela de coniguração automatica
+	 */
 	public RunGuiAuto(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
 		this.fileHam = fileHam;

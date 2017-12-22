@@ -42,7 +42,7 @@ public class AntiSpamFilterAutomaticConfiguration {
 		problemList.add(new ExperimentProblem<>(this.antiSpamFilterProblem));
 
 		List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> algorithmList = configureAlgorithmList(
-				problemList);
+				problemList); 
 
 		Experiment<DoubleSolution, List<DoubleSolution>> experiment = new ExperimentBuilder<DoubleSolution, List<DoubleSolution>>(
 				"AntiSpamStudy").setAlgorithmList(algorithmList).setProblemList(problemList)
