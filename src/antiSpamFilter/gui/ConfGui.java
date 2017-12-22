@@ -79,7 +79,7 @@ public class ConfGui {
 			public void actionPerformed(ActionEvent e) {
 				if(tipo==0) {
 					//Menu
-					MainGui menu = new MainGui();
+					MainGui menu = new MainGui(fileRules,fileHam,fileSpam);
 				}
 				else if (tipo==1) {
 					//GuiAuto
@@ -88,6 +88,7 @@ public class ConfGui {
 					//GuiManual
 					RunGuiManual manual = new RunGuiManual(fileRules, fileHam, fileSpam);
 				}
+				frame.setVisible(false);
 			}
 		});
 		panel.add(btnBack);

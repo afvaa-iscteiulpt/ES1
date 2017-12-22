@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import org.omg.PortableServer.ServantRetentionPolicyValue;
+
 import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.AntiSpamFilterProblem;
 import antiSpamFilter.FileEmail;
@@ -81,7 +83,8 @@ public class RunGuiAuto {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainGui mainGui = new MainGui();
+				MainGui mainGui = new MainGui(fileRules,fileHam,fileSpam);
+				frmAuto.setVisible(false);
 			}
 		});
 		panel.add(btnBack);

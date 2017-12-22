@@ -79,7 +79,8 @@ public class RunGuiManual {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainGui gui = new MainGui();
+				MainGui gui = new MainGui(fileRules,fileHam,fileSpam);
+				frmMaual.setVisible(false);
 			}
 		});
 		

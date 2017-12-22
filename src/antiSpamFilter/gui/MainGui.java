@@ -33,7 +33,7 @@ public class MainGui {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainGui window = new MainGui();
+					MainGui window = new MainGui(null,null,null);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,13 @@ public class MainGui {
 		});
 	}
 
-	public MainGui() {
+	public MainGui(FileRule fileRule, FileEmail fileHam, FileEmail fileSpam) {
+		if (fileRule != null && fileHam != null && fileSpam != null) {
+			this.fileRules = fileRule;
+			this.fileHam = fileHam;
+			this.fileSpam = fileSpam;
+			
+		}
 		initialize();
 		frame.setVisible(true);
 	}
@@ -75,11 +81,7 @@ public class MainGui {
 		panel.add(panel_2);
 
 		JButton btnNewButton_1 = new JButton("Spam");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fileSpam.showTableEmail();
-			}
-		});
+
 		panel_2.add(btnNewButton_1);
 
 		JLabel lblNewLabel_2 = new JLabel("No File Selected");
@@ -201,7 +203,15 @@ public class MainGui {
 
 			}
 		});
-
+		if (fileRules != null && fileHam != null && fileSpam != null ) {
+			lblNewLabel_1.setText("Path: " + fileRules.getPath() + "\n" + " Number Of Lines: "
+					+ fileRules.getNumberOfLines());
+			lblNewLabel_2.setText(
+					"Path: " + fileHam.getPath() + "\n" + " Number Of Lines: " + fileHam.getNumberOfLines());
+			lblNewLabel_3.setText(
+					"Path: " + fileSpam.getPath() + "\n" + " Number Of Lines: " + fileSpam.getNumberOfLines());
+			
+		}
 	}
 
 }
