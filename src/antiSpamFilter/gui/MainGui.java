@@ -102,8 +102,16 @@ public class MainGui {
 		JButton btnConfigRules = new JButton("Config Rules");
 		btnConfigRules.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam,0);
-				frame.setVisible(false);
+				if (fileRules != null && fileHam != null && fileSpam != null
+						&& fileRules.getStatusFile() == StatusFile.APPROVED
+						&& fileHam.getStatusFile() == StatusFile.APPROVED
+						&& fileSpam.getStatusFile() == StatusFile.APPROVED) {
+					ConfGui gui = new ConfGui(fileRules, fileHam, fileSpam, 0);
+					frame.setVisible(false);
+				} else {
+					// Display popup Warning the user
+					JOptionPane.showMessageDialog(null, "Input Files NOT approved, please correct it.");
+				}
 			}
 		});
 		panel.add(btnConfigRules);

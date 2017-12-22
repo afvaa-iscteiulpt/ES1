@@ -69,6 +69,11 @@ public class ConfGui {
 		panel.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Show Ham File");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileHam.showTableEmail();
+			}
+		});
 		panel.add(btnNewButton_5);
 
 		JButton btnSave = new JButton("Save");
@@ -205,7 +210,7 @@ public class ConfGui {
 				if (e.getType() == TableModelEvent.UPDATE) {
 					double changed = Double.valueOf(table.getValueAt(e.getFirstRow(), e.getColumn()).toString());
 					if (e.getColumn() == 1) {
-						// Rules
+						// Rules<
 						if (changed <= 5.0 && changed >= -5.0) {
 							fileRules.getHmapRules().get(table.getValueAt(e.getFirstRow(), 0)).setRuleWeight(table.getValueAt(e.getFirstRow(), e.getColumn()).toString());
 							tabelUpdate();

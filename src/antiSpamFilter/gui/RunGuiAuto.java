@@ -20,13 +20,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import org.omg.PortableServer.ServantRetentionPolicyValue;
-
 import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.AntiSpamFilterProblem;
 import antiSpamFilter.FileEmail;
 import antiSpamFilter.FileRule;
-import antiSpamFilter.Main;
+import antiSpamFilter.HVFile;
+import antiSpamFilter.LatexFile;
 import antiSpamFilter.Rule;
 
 public class RunGuiAuto {
@@ -78,6 +77,12 @@ public class RunGuiAuto {
 				fileRules.replaceFileContent();
 			}
 		});
+		
+		JButton btnCompileHv = new JButton("Compile Hv");
+		panel.add(btnCompileHv);
+		
+		JButton btnCompileLatex = new JButton("Compile Latex");
+		panel.add(btnCompileLatex);
 		panel.add(btnSaveRulesTo);
 		
 		JButton btnBack = new JButton("Back");
@@ -133,7 +138,37 @@ public class RunGuiAuto {
 		table.setColumnSelectionAllowed(true);
 
 		// Action Listeners
+		
+		btnCompileHv.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HVFile hvfile = new HVFile();
 
+				try {
+					hvfile.compile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		btnCompileLatex.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LatexFile latexfile = new LatexFile();
+
+				try {
+					latexfile.compile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
 		textField.addActionListener(new ActionListener() {
 
 			@Override
