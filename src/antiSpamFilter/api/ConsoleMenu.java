@@ -7,8 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-//API TESTER
-
+/**
+ * Esta class funciona como um tester da API/backend, de maneira a ser mais
+ * facil testar todas as funiconalidades sem a completa implementação da gui
+ */
 public class ConsoleMenu {
 
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,13 +22,18 @@ public class ConsoleMenu {
 	private int fileRulesLoaded = 0;
 	private int fileHamLoaded = 0;
 	private int fileSpamLoaded = 0;
-	
+
 	private boolean jmetalalreadyrunned = false;
 
 	public ConsoleMenu() throws IOException, InterruptedException {
 		showMainWindow();
 	}
 
+	/**
+	 * Mostra a janela inicial para a inserção dos ficheiros
+	 * 
+	 * @return void
+	 */
 	public void showMainWindow() throws IOException, InterruptedException {
 		int firstTime = 0;
 		while (fileRulesLoaded == 0 || fileHamLoaded == 0 || fileSpamLoaded == 0) {
@@ -87,6 +94,18 @@ public class ConsoleMenu {
 		return "";
 	}
 
+	/**
+	 * Mostra a janela inicial para a inserção dos ficheiros
+	 * 
+	 * @param waitingForInputWindow
+	 *            - verifica se no momento existe algum inserção pendente pelo
+	 *            utilizador
+	 * @param validInputs[]
+	 *            - inputs validos para cada janela
+	 * @param inputOption
+	 *            - opção inserida pelo utilizador
+	 * @return int
+	 */
 	private int checkForExitOrInvalid(int inputOption, int[] validInputs, int waitingForInputWindow) {
 
 		if (inputOption == 0) {
@@ -103,6 +122,12 @@ public class ConsoleMenu {
 		return 0;
 	}
 
+	/**
+	 * Mostra a janela para escolher entre manual ou automatico. Pode também ir
+	 * direto à janela de configuração das rules.
+	 * 
+	 * @return void
+	 */
 	public void showMenuTypeOfConfig(int firstTime) throws InterruptedException, IOException {
 
 		if (firstTime == 0)
@@ -147,13 +172,19 @@ public class ConsoleMenu {
 
 	}
 
+	/**
+	 * Mostra a janela de configuração manual.
+	 * 
+	 * @return void
+	 */
 	public void showManualWindow(int firstTime) throws InterruptedException, IOException {
 
 		if (firstTime == 0)
 			System.out.println("\n#### Window 2.1 - MANUAL CONFIGURATION");
 
 		System.out.println("1 - config rules (window)" + "\n2 - generate random weights for each rule"
-				+ "\n3 - print rules and weights" + "\n4 - calculate FP and FN" + "\n5 - save to file" + "\n9 - back" + "\n0 - exit");
+				+ "\n3 - print rules and weights" + "\n4 - calculate FP and FN" + "\n5 - save to file" + "\n9 - back"
+				+ "\n0 - exit");
 
 		int[] validInputs = { 0, 1, 2, 3, 4, 5, 9 };
 
@@ -201,6 +232,12 @@ public class ConsoleMenu {
 		}
 	}
 
+	/**
+	 * Calcula o FP e FN para os pesos das rules currente e para os ficheiros
+	 * SPAM e HAM inseridos.
+	 * 
+	 * @return void
+	 */
 	private void calculateFPandFN() throws InterruptedException, IOException {
 		System.out.println("\nFP = " + fileHam.calculateFPorFN(fileRules.getHmapRules()) + "\nFN = "
 				+ fileSpam.calculateFPorFN(fileRules.getHmapRules()) + "\n");
@@ -208,27 +245,43 @@ public class ConsoleMenu {
 		showManualWindow(1);
 	}
 
+	/**
+	 * Gera automaticamente pesos entre -5 e 5 para cada rule.
+	 * 
+	 * @return void
+	 */
 	private void generateRandomWeightsForEachRule() throws InterruptedException, IOException {
 		fileRules.generateRandomWeightsForEachRule();
 
 		System.out.println("Random weights generated!");
-		
+
 		showManualWindow(1);
 	}
 
+	/**
+	 * Imprime no ecrã todas as tules e seus pesos
+	 * 
+	 * @return void
+	 */
 	private void printRulesAndWeights() throws InterruptedException, IOException {
 		System.out.println("\nALL RULES = " + fileRules.getHmapRulesString() + "\n");
 	}
 
+	/**
+	 * Mostra a janela de configuração automatica.
+	 * 
+	 * @return void
+	 */
 	public void showAutoWindow(int firstTime) throws InterruptedException, IOException {
 
 		if (firstTime == 0)
 			System.out.println("\n#### Window 2.2 - AUTOMATIC CONFIGURATION");
 
-		String extraFeatures = (jmetalalreadyrunned != false) ? "\n4 - compile HV file" + "\n5 - compile latex file" : "";
-		System.out.println("1 - config rules (window)" + "\n2 - run jmetal and find best weights"
-				+ "\n3 - print rules and weights" + extraFeatures 
-				+ "\n6 - save rules to file" + "\n9 - back" + "\n0 - exit");
+		String extraFeatures = (jmetalalreadyrunned != false) ? "\n4 - compile HV file" + "\n5 - compile latex file"
+				: "";
+		System.out.println(
+				"1 - config rules (window)" + "\n2 - run jmetal and find best weights" + "\n3 - print rules and weights"
+						+ extraFeatures + "\n6 - save rules to file" + "\n9 - back" + "\n0 - exit");
 
 		int[] validInputs = { 0, 1, 2, 3, 4, 5, 6, 9 };
 
@@ -255,7 +308,7 @@ public class ConsoleMenu {
 			showConfigRulesWindow(0);
 			break;
 		case 2:
-			runJmetalAndReturnResults(); //falta acabar este
+			runJmetalAndReturnResults(); // falta acabar este
 			showAutoWindow(1);
 			break;
 		case 3:
@@ -263,10 +316,10 @@ public class ConsoleMenu {
 			showAutoWindow(1);
 			break;
 		case 4:
-			compileHv(); 
+			compileHv();
 			break;
 		case 5:
-			compileLatex(); 
+			compileLatex();
 			break;
 		case 6:
 			saveToFile();
@@ -280,6 +333,11 @@ public class ConsoleMenu {
 		}
 	}
 
+	/**
+	 * Corre o jmetal para encontrar os melhores pesos para as regras.
+	 * 
+	 * @return void
+	 */
 	private void runJmetalAndReturnResults() {
 
 		AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileHam, fileSpam, fileRules);
@@ -291,24 +349,28 @@ public class ConsoleMenu {
 
 			// results[FP, FN, WEIGTHS to put in hashmap]
 			BestResult results = antiSpamConfig.checkBestSolution();
-			
+
 			fileRules.setWeights(results.getBestWeights());
-			
+
 			fileHam.setFpFn(results.getDoubleBestFn());
 			fileSpam.setFpFn(results.getDoubleBestFp());
-		
-			System.out.println("\nFP = " + results.getDoubleBestFp() + "\nFN = "
-					+ results.getDoubleBestFn() + "\n");
+
+			System.out.println("\nFP = " + results.getDoubleBestFp() + "\nFN = " + results.getDoubleBestFn() + "\n");
 
 		} catch (IOException e) {
 			System.out.println("Something wrong with current problem!");
 			System.exit(0);
 			e.printStackTrace();
 		}
-		
+
 		jmetalalreadyrunned = true;
 	}
 
+	/**
+	 * Compila o ficheiro latex para pdf
+	 * 
+	 * @return void
+	 */
 	private void compileLatex() throws IOException, InterruptedException {
 
 		LatexFile latexfile = new LatexFile();
@@ -320,6 +382,11 @@ public class ConsoleMenu {
 
 	}
 
+	/**
+	 * Compila o ficheiro HV
+	 * 
+	 * @return void
+	 */
 	private void compileHv() throws IOException, InterruptedException {
 
 		HVFile hvfile = new HVFile();
@@ -331,6 +398,12 @@ public class ConsoleMenu {
 
 	}
 
+	/**
+	 * Mostra a janela de configuração das rules.
+	 * 
+	 * @return void
+	 * 
+	 */
 	public void showConfigRulesWindow(int firstTime) throws InterruptedException, IOException {
 
 		if (firstTime == 0)
@@ -399,6 +472,12 @@ public class ConsoleMenu {
 		}
 	}
 
+	/**
+	 * Edita as rules inseridas na console pelo utilizador, separadas por
+	 * virgula
+	 * 
+	 * @return void
+	 */
 	private void editRules() throws InterruptedException, IOException {
 		System.out.println("Enter rule/s names separated by comma: ");
 
@@ -416,6 +495,11 @@ public class ConsoleMenu {
 
 	}
 
+	/**
+	 * Adiciona uma nova rule à lista de rules
+	 * 
+	 * @return void
+	 */
 	private void addNewRule() throws InterruptedException, IOException {
 		System.out.println("Enter new rule name: ");
 
@@ -432,6 +516,11 @@ public class ConsoleMenu {
 		showConfigRulesWindow(1);
 	}
 
+	/**
+	 * Verifica se a rule existe
+	 * 
+	 * @return void
+	 */
 	private void searchRule() throws InterruptedException, IOException {
 		System.out.println("Enter rule names for search: ");
 
@@ -442,6 +531,11 @@ public class ConsoleMenu {
 		showConfigRulesWindow(1);
 	}
 
+	/**
+	 * Elimina a rule se existir
+	 * 
+	 * @return void
+	 */
 	private void deleteRules() throws IOException, InterruptedException {
 		System.out.println("Enter rules names separated by comma: ");
 
@@ -454,9 +548,14 @@ public class ConsoleMenu {
 		showConfigRulesWindow(1);
 	}
 
+	/**
+	 * Guarda as rules e os seus pesos no ficheiro
+	 * 
+	 * @return void
+	 */
 	private void saveToFile() throws InterruptedException, IOException {
 		fileRules.replaceFileContent();
-		
+
 		System.out.println("Saved to file!\n");
 	}
 

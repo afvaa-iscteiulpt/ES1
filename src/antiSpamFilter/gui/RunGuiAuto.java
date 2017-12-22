@@ -193,7 +193,7 @@ public class RunGuiAuto {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Run With Auto config
-				JOptionPane.showMessageDialog(null, "Running experiment!");
+				JOptionPane.showMessageDialog(null, "Running experiment please wait till the message appears!");
 				runExperiment();
 				jmetalalreadyrunned = true;
 				

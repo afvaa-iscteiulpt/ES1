@@ -14,10 +14,12 @@ public class LatexFile implements JmetalFiles {
 
 	private static TypeFile typeFile = TypeFile.LATEX;
 	
-	public LatexFile() {
-
-	}
-
+	
+	/**
+	 * Compila o ficheiro Latex para pdf e mostra um alert com o resultado.
+	 * 
+	 * @return void
+	 */
 	@Override
 	public void compile() throws IOException {
 		String result = "";

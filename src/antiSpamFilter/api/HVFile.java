@@ -12,9 +12,11 @@ public class HVFile implements JmetalFiles {
 
 	private static TypeFile typeFile = TypeFile.HV;
 	
-	public HVFile() {
-	}
-
+	/**
+	 * Compila o ficheiro HV e mostra um alert com o resultado.
+	 * 
+	 * @return void
+	 */
 	@Override
 	public void compile() throws IOException {
 		String result = "";

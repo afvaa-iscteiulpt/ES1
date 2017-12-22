@@ -10,6 +10,12 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Class FileAbstract - class para o carregamento dos ficheiros. É usada pelos
+ * ficheiros ham, sapm e rules.
+ * 
+ */
+
 public abstract class FileAbstract {
 
 	private String name;
@@ -17,14 +23,25 @@ public abstract class FileAbstract {
 	private int numberOfLines;
 	private TypeFile typeFile;
 	private List<String> allLines = new ArrayList<String>();
-	private StatusFile statusFile; 
+	private StatusFile statusFile;
 
+	/**
+	 * Inicializador
+	 * 
+	 * @param TypeFile
+	 *            - EMAIL ou RULE
+	 */
 	public FileAbstract(TypeFile type) {
 		typeFile = type;
 
 		showFileDialog();
 	}
 
+	/**
+	 * Mostra a janela de file chooser para escolher os ficheiros
+	 * 
+	 * @return void
+	 */
 	private void showFileDialog() {
 
 		String userDir = System.getProperty("user.home");
@@ -47,6 +64,11 @@ public abstract class FileAbstract {
 
 	}
 
+	/**
+	 * Verifica se o ficheiro foi aprovado ou nao e guarda esse ficheiro.
+	 * 
+	 * @return void
+	 */
 	private void getResultedFile(int returnValue, JFileChooser chooser) {
 
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -61,6 +83,11 @@ public abstract class FileAbstract {
 		}
 	}
 
+	/**
+	 * Guarda o nome e path do ficheiro carregado
+	 * 
+	 * @return void
+	 */
 	private void approveOption(JFileChooser chooser) {
 
 		java.io.File file = chooser.getSelectedFile();
@@ -74,6 +101,11 @@ public abstract class FileAbstract {
 		readFile(file);
 	}
 
+	/**
+	 * Lê o ficheiro e guarda a sua informação
+	 * 
+	 * @return void
+	 */
 	private void readFile(java.io.File file) {
 
 		BufferedReader reader = null;
@@ -113,42 +145,96 @@ public abstract class FileAbstract {
 
 	}
 
+	/**
+	 * Retorna o nome do ficheiro
+	 * 
+	 * @return String
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Retorna o path do ficheiro
+	 * 
+	 * @return String
+	 */
 	public String getPath() {
 		return path;
 	}
 
+	/**
+	 * Retorna o numero de linhas do ficheiro
+	 * 
+	 * @return int
+	 */
 	public int getNumberOfLines() {
 		return numberOfLines;
 	}
 
+	/**
+	 * Retorna o tipo do ficheiro - RULE ou EMAIL
+	 * 
+	 * @return TypeFile
+	 */
 	public TypeFile getTypeFile() {
 		return typeFile;
 	}
 
+	/**
+	 * Guarda o nome do ficheiro
+	 * 
+	 * @param String
+	 * @return void
+	 */
 	private void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Guarda o numero de linhas do ficheiro
+	 * 
+	 * @param int
+	 * @return void
+	 */
 	private void setNumberOfLines(int numberOfLines) {
 		this.numberOfLines = numberOfLines;
 	}
 
+	/**
+	 * Guarda o path do ficheiro
+	 * 
+	 * @param String
+	 * @return void
+	 */
 	private void setPath(String path) {
 		this.path = path;
 	}
 
+	/**
+	 * Retorna todas as linhas do ficheiro
+	 * 
+	 * @return List<String>
+	 */
 	public List<String> getAllLines() {
 		return allLines;
 	}
 
+	/**
+	 * Retorna o estado do ficheiro - APPROVED ou NOTAPPROVED
+	 * 
+	 * @return StatusFile
+	 */
 	public StatusFile getStatusFile() {
 		return statusFile;
 	}
 
+	/**
+	 * Define o estado do ficheiro - APPROVED ou NOTAPPROVED
+	 * 
+	 * @param StatusFile
+	 * @return void
+	 */
 	public void setStatusFile(StatusFile statusFile) {
 		this.statusFile = statusFile;
 	}

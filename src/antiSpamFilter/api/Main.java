@@ -9,6 +9,10 @@ import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.omg.CORBA.portable.InputStream;
 
+/**
+ * Esta class apenas corre a class consoleMenu de maneira a testar toda a API através da console
+ */
+
 public class Main {
 
 	public static void main(String[] args) throws IOException, InterruptedException {

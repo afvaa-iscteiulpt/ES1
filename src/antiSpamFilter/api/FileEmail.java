@@ -6,6 +6,10 @@ import java.util.LinkedList;
 
 import antiSpamFilter.gui.EmailTableGUI;
 
+/**
+ * Class com os ficheiros do HAM e SPAM que extends o FileAbstract
+ * 
+ */
 
 public class FileEmail extends FileAbstract {
 
@@ -14,6 +18,10 @@ public class FileEmail extends FileAbstract {
 	private LinkedList<Email> linkedListEmails = new LinkedList<Email>();
 	private double currentFpFn = 0;
 
+	/**
+	 * Inicializador
+	 * Se o ficheiro estiver bom carrega o ficheiro nos email, se não faz reset à linked list de emails.
+	 */
 	public FileEmail(TypeEmail typeEmail) {
 		super(typeFile);
 
@@ -26,6 +34,11 @@ public class FileEmail extends FileAbstract {
 
 	}
 
+	/**
+	 * Insere os emails para a linkedlist
+	 * 
+	 * @return void
+	 */
 	public void insertToEmails() {
 
 		String[] columnDetail = null;
@@ -51,18 +64,39 @@ public class FileEmail extends FileAbstract {
 
 	}
 
+	/**
+	 * Retorna o tipo de email - HAM ou SPAM
+	 * 
+	 * @return TypeEmail
+	 */
 	public TypeEmail getTypeEmail() {
 		return this.typeEmail;
 	}
 
+	/**
+	 * Retorna a lista de emails
+	 * 
+	 * @return LinkedList<Email>
+	 */
 	public LinkedList<Email> getLinkedListEmails() {
 		return this.linkedListEmails;
 	}
 
+	/**
+	 * Limpa a lista de emails
+	 * 
+	 * @return void
+	 */
 	public void resetList() {
 		this.linkedListEmails = new LinkedList<Email>();
 	}
 
+	/**
+	 * Calcula o FP ou FN para cada lista de emails, dependendo se é HAM ou SPAM
+	 * 
+	 * @param HashMap<String, Rule> - hashmap com as rules
+	 * @return int
+	 */
 	public int calculateFPorFN(HashMap<String, Rule> hmapRules) {
 		int F = 0;
 
@@ -118,6 +152,11 @@ public class FileEmail extends FileAbstract {
 		return F;
 	}
 	
+	/**
+	 * Motra a gui com todos os emails e a sua soma
+	 *
+	 * @return void
+	 */
 	public void showTableEmail() {
 		
 		Object[][] data = getDataTable();
@@ -127,6 +166,11 @@ public class FileEmail extends FileAbstract {
 		
 	}
 
+	/**
+	 * Processa a informação e cria as colunas da tabela
+	 *
+	 * @return Object[][]
+	 */
 	private Object[][] getDataTable() {
 
 		Object[][] data = new Object[linkedListEmails.size()][7];
@@ -149,6 +193,11 @@ public class FileEmail extends FileAbstract {
 		
 	}
 
+	/**
+	 * Retorna os nomes das colunas da tabela
+	 *
+	 * @return String[]
+	 */
 	private String[] getColumnsTable() {
 		
 		String[] columnNames = { "#", "Type", "ID", "FP/FN", "Sum", "Rules", "Full Path" };
@@ -157,10 +206,21 @@ public class FileEmail extends FileAbstract {
 		
 	}
 
+	/**
+	 * Define o melhor FP ou FN saido do jmetal
+	 *
+	 * @param double
+	 * @return void
+	 */
 	public void setFpFn(double doubleBestFp) {
 		this.currentFpFn = doubleBestFp;
 	}
 	
+	/**
+	 * Retorna o FP ou FN guardado
+	 *
+	 * @return double
+	 */
 	public double getFpFn() {
 		return currentFpFn;
 	}

@@ -24,6 +24,10 @@ import antiSpamFilter.api.FileEmail;
 import antiSpamFilter.api.FileRule;
 import antiSpamFilter.api.Rule;
 
+/**
+ * Gui da janela de processamento manual
+ * 
+ */
 public class RunGuiManual {
 
 	private JFrame frmMaual;
@@ -36,6 +40,10 @@ public class RunGuiManual {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 
+	/**
+	 * Inicializador
+	 * Cria a gui para mostrar a janela de coniguração manual
+	 */
 	public RunGuiManual(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
 		this.fileHam = fileHam;

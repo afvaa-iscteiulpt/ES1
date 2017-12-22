@@ -13,7 +13,10 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
 	private FileRule fileRules;
-
+	
+	/**
+	 * Construtor do problema, para ser passado ao jmetal
+	 */
 	public AntiSpamFilterProblem(FileEmail fileHam, FileEmail fileSpam, FileRule fileRules) {
 		setNumberOfVariables(fileRules.getNumberOfLines());
 		setNumberOfObjectives(2);

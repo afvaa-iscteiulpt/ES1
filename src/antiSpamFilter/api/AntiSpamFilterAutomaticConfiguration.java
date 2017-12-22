@@ -34,7 +34,7 @@ public class AntiSpamFilterAutomaticConfiguration {
 	public AntiSpamFilterAutomaticConfiguration(AntiSpamFilterProblem antiSpamFilterProblem) {
 		this.antiSpamFilterProblem = antiSpamFilterProblem;
 	}
-
+	
 	public void runSolution() throws IOException {
 		String experimentBaseDirectory = "experimentDirectory"; 
 
@@ -74,6 +74,11 @@ public class AntiSpamFilterAutomaticConfiguration {
 		return algorithms;
 	}
 
+	/**
+	 * Este metodo verifica a melhor solução das hipóteses imprimidas nos ficheiros jmetal.
+	 *
+	 * @return      BestResult
+	 */
 	public BestResult checkBestSolution() throws IOException {
 
 		readFiles();
@@ -106,6 +111,11 @@ public class AntiSpamFilterAutomaticConfiguration {
 		
 	}
 
+	/**
+	 * Este metodo lê os ficheiros criados pelo Jmetal, e insere a informação em hashmaps
+	 *
+	 * @return      void
+	 */
 	public void readFiles() throws IOException {
 		
 		String current = new java.io.File(".").getCanonicalPath();

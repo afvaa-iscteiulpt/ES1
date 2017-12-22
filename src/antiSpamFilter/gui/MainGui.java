@@ -17,6 +17,10 @@ import antiSpamFilter.api.FileRule;
 import antiSpamFilter.api.StatusFile;
 import antiSpamFilter.api.TypeEmail;
 
+/**
+ * Gui da janela de carregamento de ficheiros
+ * 
+ */
 public class MainGui {
 
 	private JFrame frame;
@@ -24,7 +28,11 @@ public class MainGui {
 	private FileEmail fileHam;
 	private FileEmail fileSpam;
 
-	public static void main(String[] args) {
+	/**
+	 * Inicializador
+	 * Cria a gui para mostrar a tabela gerada com os emails
+	 */
+	public MainGui() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

@@ -1,0 +1,8 @@
+package antiSpamFilter.gui;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		MainGui gui = new MainGui();		
+	}
+}
