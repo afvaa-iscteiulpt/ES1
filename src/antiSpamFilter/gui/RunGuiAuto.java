@@ -48,7 +48,7 @@ public class RunGuiAuto {
 
 	/**
 	 * Inicializador
-	 * Cria a gui para mostrar a janela de coniguração automatica
+	 * Cria a gui para mostrar a janela de coniguraï¿½ï¿½o automatica
 	 */
 	public RunGuiAuto(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
@@ -126,6 +126,8 @@ public class RunGuiAuto {
 		model.addColumn("Rules");
 		model.addColumn("Weight [-5;5]");
 		table = new JTable(model);
+		table.setEnabled(false);
+
 
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
 		table.setRowSorter(sorter);

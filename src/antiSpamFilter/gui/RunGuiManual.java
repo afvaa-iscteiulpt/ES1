@@ -42,7 +42,7 @@ public class RunGuiManual {
 
 	/**
 	 * Inicializador
-	 * Cria a gui para mostrar a janela de coniguração manual
+	 * Cria a gui para mostrar a janela de coniguraï¿½ï¿½o manual
 	 */
 	public RunGuiManual(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
@@ -116,6 +116,7 @@ public class RunGuiManual {
 		model.addColumn("Rules");
 		model.addColumn("Weight [-5;5]");
 		table = new JTable(model);
+		table.setEnabled(false);
 
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
 		table.setRowSorter(sorter);
