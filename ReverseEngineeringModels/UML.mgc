@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="antiSpamFilter.api.Rule" x="1463" y="900">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="antiSpamFilter.gui.ConfGui" x="1123" y="1086">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="fileHam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="fileSpam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileRule"
+            endpointName="fileRules" kind="Simple"/>
+    </Class>
+    <Class name="antiSpamFilter.gui.RunGuiManual" x="742" y="1087">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="fileHam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="fileSpam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileRule"
+            endpointName="fileRules" kind="Simple"/>
+        <Communication destinationClassName="antiSpamFilter.api.FileEmail"/>
+    </Class>
+    <Class name="antiSpamFilter.api.jUnit.FileRuleTest" x="1909" y="628">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.FileRule"
+            endpointName="instance" kind="Simple"/>
+        <Communication destinationClassName="antiSpamFilter.api.FileRule"/>
+    </Class>
+    <Class name="antiSpamFilter.api.jUnit.RuleTest" x="1453" y="1038">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.Rule"
+            endpointName="instance" kind="Simple"/>
+        <Communication destinationClassName="antiSpamFilter.api.Rule"/>
+    </Class>
+    <Class name="antiSpamFilter.api.BestResult" x="115" y="410">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="antiSpamFilter.api.TypeEmail" x="520" y="962">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="antiSpamFilter.api.StatusFile" x="1613" y="508">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="antiSpamFilter.api.Main" x="117" y="584">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="antiSpamFilter.api.jUnit.EmailTest" x="808" y="106">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.Email"
+            endpointName="instanceSpam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.Email"
+            endpointName="instanceHam" kind="Simple"/>
+        <Communication destinationClassName="antiSpamFilter.api.Email"/>
+    </Class>
+    <Class name="antiSpamFilter.api.LatexFile" x="1358" y="220">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="antiSpamFilter.api.JmetalFiles"/>
+        <Association destinationClassName="antiSpamFilter.api.TypeFile"
+            endpointName="typeFile" kind="Simple"/>
+    </Class>
+    <Class name="antiSpamFilter.api.JmetalFiles" x="1299" y="142">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="antiSpamFilter.api.jUnit.BestResultTest" x="98" y="658">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="antiSpamFilter.api.BestResult"
+            endpointName="instance" kind="Simple"/>
+    </Class>
+    <Class name="antiSpamFilter.api.Email" x="432" y="177">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.TypeEmail"
+            endpointName="type" kind="Simple"/>
+    </Class>
+    <Class name="antiSpamFilter.gui.RunGuiAuto" x="922" y="1087">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="fileHam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="fileSpam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileRule"
+            endpointName="fileRules" kind="Simple"/>
+        <Communication destinationClassName="antiSpamFilter.api.FileEmail"/>
+    </Class>
+    <Class name="antiSpamFilter.gui.MainGui" x="632" y="1083">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="fileHam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="fileSpam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileRule"
+            endpointName="fileRules" kind="Simple"/>
+    </Class>
+    <Class name="antiSpamFilter.api.FileAbstract" x="1428" y="476">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="antiSpamFilter.api.StatusFile"
+            endpointName="statusFile" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.TypeFile"
+            endpointName="typeFile" kind="Simple"/>
+    </Class>
+    <Class name="antiSpamFilter.api.jUnit.FileEmailTest" x="998" y="474">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="instanceSpam" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.FileEmail"
+            endpointName="instanceHam" kind="Simple"/>
+        <Communication destinationClassName="antiSpamFilter.api.FileEmail"/>
+    </Class>
+    <Class name="antiSpamFilter.api.TypeFile" x="1305" y="328">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="antiSpamFilter.api.FileRule" x="1391" y="659">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="antiSpamFilter.api.FileAbstract"/>
+        <Association destinationClassName="antiSpamFilter.api.Rule"
+            endpointName="hmapRules" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.TypeFile"
+            endpointName="typeFile" kind="Simple"/>
+        <Communication destinationClassName="antiSpamFilter.api.Rule"/>
+    </Class>
+    <Class name="antiSpamFilter.api.HVFile" x="1216" y="225">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="antiSpamFilter.api.JmetalFiles"/>
+        <Association destinationClassName="antiSpamFilter.api.TypeFile"
+            endpointName="typeFile" kind="Simple"/>
+    </Class>
+    <Class name="antiSpamFilter.gui.EmailTableGUI" x="288" y="807">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="antiSpamFilter.api.FileEmail" x="1064" y="674">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="antiSpamFilter.api.FileAbstract"/>
+        <Association destinationClassName="antiSpamFilter.api.TypeEmail"
+            endpointName="typeEmail" kind="Simple"/>
+        <Association destinationClassName="antiSpamFilter.api.TypeFile"
+            endpointName="typeFile" kind="Simple"/>
+        <Communication destinationClassName="antiSpamFilter.api.Rule"/>
+        <Communication destinationClassName="antiSpamFilter.api.Email"/>
+        <Communication destinationClassName="antiSpamFilter.gui.EmailTableGUI"/>
+    </Class>
+</ClassDiagram>

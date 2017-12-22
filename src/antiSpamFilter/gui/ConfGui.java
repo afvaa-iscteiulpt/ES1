@@ -94,6 +94,12 @@ public class ConfGui {
 
 		JButton btnExit = new JButton("Exit");
 		panel.add(btnExit);
+		
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);

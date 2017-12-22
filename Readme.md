@@ -27,3 +27,8 @@ AntiSpamConfigurationForBalancedProfessionalAndLeisureMailbox
 ```
 https://...
 ```
+
+### Problemas e erros no software:<br />
+```
+O único erro encontrado durante a execução do teste é na compilação do HV. Este erro e possivel solução são demonstrados durante o filme.
+```
