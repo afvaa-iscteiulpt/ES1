@@ -53,7 +53,9 @@ public class RunGuiManual {
 	}
 
 	private void initialize() {
-		// Gui Visuals
+		/** 
+		 * Initialize Gui visuals
+		 */
 		frmMaual = new JFrame();
 		frmMaual.setTitle("Manual");
 		frmMaual.setBounds(300, 300, 450, 300);
@@ -67,13 +69,7 @@ public class RunGuiManual {
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton btnGenerateRandomWeights = new JButton("Generate Random Weights");
-		btnGenerateRandomWeights.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fileRules.generateRandomWeightsForEachRule();
-				JOptionPane.showMessageDialog(null, "New weights created!");
-				tabelUpdate();
-			}
-		});
+		
 		panel.add(btnGenerateRandomWeights);
 		
 		JButton btnCalculateFp = new JButton("Calculate FP & FN");
@@ -86,20 +82,9 @@ public class RunGuiManual {
 		panel.add(lblNewLabel_1);
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainGui gui = new MainGui(fileRules,fileHam,fileSpam);
-				frmMaual.setVisible(false);
-			}
-		});
 		
 		JButton btnSaveRulesTo = new JButton("Save Rules To File");
-		btnSaveRulesTo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fileRules.replaceFileContent();
-				JOptionPane.showMessageDialog(null, "File edited!");
-			}
-		});
+
 		panel.add(btnSaveRulesTo);
 		panel.add(btnBack);
 		
@@ -142,7 +127,33 @@ public class RunGuiManual {
 		table.setRowSelectionAllowed(false);
 		table.setColumnSelectionAllowed(true);
 
-		// Action Listeners
+		/**
+		 * Action Listeners
+		 */
+		
+		btnGenerateRandomWeights.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileRules.generateRandomWeightsForEachRule();
+				JOptionPane.showMessageDialog(null, "New weights created!");
+				tabelUpdate();
+			}
+		});
+		
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainGui gui = new MainGui(fileRules,fileHam,fileSpam);
+				frmMaual.setVisible(false);
+			}
+		});
+		
+		
+		btnSaveRulesTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileRules.replaceFileContent();
+				JOptionPane.showMessageDialog(null, "File edited!");
+			}
+		});
+		
 		btnExit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -188,7 +199,7 @@ public class RunGuiManual {
 	}
 
 	public void runExperiment() {
-		// Run
+		// Run & update FP/FN
 		double FP = fileHam.calculateFPorFN(fileRules.getHmapRules());
 		double FN = fileSpam.calculateFPorFN(fileRules.getHmapRules());
 		lblNewLabel.setText("FP: " + FP); // actualizar os valores

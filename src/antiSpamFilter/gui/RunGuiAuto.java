@@ -47,8 +47,7 @@ public class RunGuiAuto {
 	private boolean jmetalalreadyrunned = false;
 
 	/**
-	 * Inicializador
-	 * Cria a gui para mostrar a janela de conigura��o automatica
+	 * Inicializador Cria a gui para mostrar a janela de conigura��o automatica
 	 */
 	public RunGuiAuto(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
@@ -59,7 +58,11 @@ public class RunGuiAuto {
 	}
 
 	private void initialize() {
-		// Gui Visuals
+		
+		/**
+		 * Initialize Gui Visuals
+		 */
+		
 		frmAuto = new JFrame();
 		frmAuto.setTitle("Auto");
 		frmAuto.setBounds(300, 300, 450, 300);
@@ -80,40 +83,23 @@ public class RunGuiAuto {
 
 		lblNewLabel_1 = new JLabel("FN: ");
 		panel.add(lblNewLabel_1);
-		
+
 		JButton btnSaveRulesTo = new JButton("Save Rules To File");
-		btnSaveRulesTo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fileRules.replaceFileContent();
-				JOptionPane.showMessageDialog(null, "File edited!");
-			}
-		});
-		
+
 		JButton btnCompileHv = new JButton("Compile Hv");
 		panel.add(btnCompileHv);
 		btnCompileHv.setEnabled(false);
-		
+
 		JButton btnCompileLatex = new JButton("Compile Latex");
 		panel.add(btnCompileLatex);
 		btnCompileLatex.setEnabled(false);
-		
+
 		panel.add(btnSaveRulesTo);
-		
+
 		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainGui mainGui = new MainGui(fileRules,fileHam,fileSpam);
-				frmAuto.setVisible(false);
-			}
-		});
 		panel.add(btnBack);
-		
+
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
 		panel.add(btnExit);
 
 		JPanel panel_1 = new JPanel();
@@ -127,7 +113,6 @@ public class RunGuiAuto {
 		model.addColumn("Weight [-5;5]");
 		table = new JTable(model);
 		table.setEnabled(false);
-
 
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
 		table.setRowSorter(sorter);
@@ -153,10 +138,32 @@ public class RunGuiAuto {
 		table.setRowSelectionAllowed(false);
 		table.setColumnSelectionAllowed(true);
 
-		// Action Listeners
-		
+		/**
+		 * Action Listeners
+		 */
+
+		btnSaveRulesTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileRules.replaceFileContent();
+				JOptionPane.showMessageDialog(null, "File edited!");
+			}
+		});
+
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainGui mainGui = new MainGui(fileRules, fileHam, fileSpam);
+				frmAuto.setVisible(false);
+			}
+		});
+
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+
 		btnCompileHv.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				HVFile hvfile = new HVFile();
@@ -166,12 +173,12 @@ public class RunGuiAuto {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
-		
+
 		btnCompileLatex.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LatexFile latexfile = new LatexFile();
@@ -181,10 +188,10 @@ public class RunGuiAuto {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
-		
+
 		textField.addActionListener(new ActionListener() {
 
 			@Override
@@ -195,7 +202,7 @@ public class RunGuiAuto {
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam,1);
+				ConfGui confGui = new ConfGui(fileRules, fileHam, fileSpam, 1);
 				frmAuto.setVisible(false);
 			}
 		});
@@ -206,15 +213,16 @@ public class RunGuiAuto {
 				JOptionPane.showMessageDialog(null, "Running experiment please wait till the message appears!");
 				runExperiment();
 				jmetalalreadyrunned = true;
-				
+
 				btnCompileHv.setEnabled(true);
 				btnCompileLatex.setEnabled(true);
-				
+
 			}
 		});
 	}
 
 	private void tabelUpdate() {
+		// Called When a change occurs in the table to update its data
 		model.setRowCount(0);
 		for (Entry<String, Rule> entry : fileRules.getHmapRules().entrySet()) {
 			model.addRow(new Object[] { entry.getKey(), entry.getValue().getRuleWeight() });
@@ -222,7 +230,7 @@ public class RunGuiAuto {
 	}
 
 	public void runExperiment() {
-		// Run
+		// Run The experiment with the auto settings
 		AntiSpamFilterProblem problem = new AntiSpamFilterProblem(fileHam, fileSpam, fileRules);
 
 		AntiSpamFilterAutomaticConfiguration antiSpamConfig = new AntiSpamFilterAutomaticConfiguration(problem);
@@ -237,7 +245,7 @@ public class RunGuiAuto {
 		lblNewLabel.setText("FP: " + FP); // actualizar os valores
 		lblNewLabel_1.setText("FN: " + FN); // actualizar os valores
 		tabelUpdate();
-		
+
 		JOptionPane.showMessageDialog(null, "Experiment complete!");
 	}
 

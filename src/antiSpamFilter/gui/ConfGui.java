@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -54,8 +53,8 @@ public class ConfGui {
 	}
 
 	/**
-	 * Inicializador
-	 * Cria a gui, elementos e action listeners para correr funções da API
+	 * Inicializador Cria a gui, elementos e action listeners para correr funï¿½ï¿½es da
+	 * API
 	 */
 	private void initialize() {
 		// Gui Visuals
@@ -70,7 +69,7 @@ public class ConfGui {
 
 		JButton btnNewButton_3 = new JButton("Delete Rule(s)");
 		panel.add(btnNewButton_3);
-		
+
 		JButton btnNewButton_4 = new JButton("Show Spam File");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,7 +77,7 @@ public class ConfGui {
 			}
 		});
 		panel.add(btnNewButton_4);
-		
+
 		JButton btnNewButton_5 = new JButton("Show Ham File");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,26 +88,10 @@ public class ConfGui {
 
 		JButton btnSave = new JButton("Save");
 		panel.add(btnSave);
-		
+
 		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(tipo==0) {
-					//Menu
-					MainGui menu = new MainGui(fileRules,fileHam,fileSpam);
-				}
-				else if (tipo==1) {
-					//GuiAuto
-					RunGuiAuto auto = new RunGuiAuto(fileRules, fileHam, fileSpam);
-				} else if (tipo == 2) {
-					//GuiManual
-					RunGuiManual manual = new RunGuiManual(fileRules, fileHam, fileSpam);
-				}
-				frame.setVisible(false);
-			}
-		});
 		panel.add(btnBack);
-		
+
 		JButton btnExit = new JButton("Exit");
 		panel.add(btnExit);
 
@@ -171,6 +154,24 @@ public class ConfGui {
 		panel_2.add(btnNewButton, BorderLayout.SOUTH);
 
 		panel_1.add(panel_2, BorderLayout.SOUTH);
+		
+		// Action Listeners
+		
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tipo == 0) {
+					// Menu
+					MainGui menu = new MainGui(fileRules, fileHam, fileSpam);
+				} else if (tipo == 1) {
+					// GuiAuto
+					RunGuiAuto auto = new RunGuiAuto(fileRules, fileHam, fileSpam);
+				} else if (tipo == 2) {
+					// GuiManual
+					RunGuiManual manual = new RunGuiManual(fileRules, fileHam, fileSpam);
+				}
+				frame.setVisible(false);
+			}
+		});
 
 		textField_1.addActionListener(new ActionListener() {
 
@@ -201,7 +202,7 @@ public class ConfGui {
 					int row = table.getSelectedRow();
 					String value = table.getModel().getValueAt(row, column).toString();
 					if (!value.equals(null)) {
-						String[] arrayDel = {value};
+						String[] arrayDel = { value };
 						fileRules.deleteRules(arrayDel);
 						JOptionPane.showMessageDialog(null, "Rules deleted!");
 					}
@@ -226,7 +227,8 @@ public class ConfGui {
 					if (e.getColumn() == 1) {
 						// Rules<
 						if (changed <= 5.0 && changed >= -5.0) {
-							fileRules.getHmapRules().get(table.getValueAt(e.getFirstRow(), 0)).setRuleWeight(table.getValueAt(e.getFirstRow(), e.getColumn()).toString());
+							fileRules.getHmapRules().get(table.getValueAt(e.getFirstRow(), 0))
+									.setRuleWeight(table.getValueAt(e.getFirstRow(), e.getColumn()).toString());
 							tabelUpdate();
 							System.out.println(fileRules.getHmapRulesString());
 						} else {
@@ -239,6 +241,7 @@ public class ConfGui {
 	}
 
 	private void tabelUpdate() {
+		// Called When a change occurs in the table to update its data
 		model.setRowCount(0);
 		for (Entry<String, Rule> entry : fileRules.getHmapRules().entrySet()) {
 			model.addRow(new Object[] { entry.getKey(), entry.getValue().getRuleWeight() });

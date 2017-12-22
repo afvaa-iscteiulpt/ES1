@@ -29,14 +29,13 @@ public class MainGui {
 	private FileEmail fileSpam;
 
 	/**
-	 * Inicializador
-	 * Cria a gui para mostrar a tabela gerada com os emails
+	 * Inicializador Cria a gui para mostrar a tabela gerada com os emails
 	 */
 	public MainGui() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainGui window = new MainGui(null,null,null);
+					MainGui window = new MainGui(null, null, null);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +49,7 @@ public class MainGui {
 			this.fileRules = fileRule;
 			this.fileHam = fileHam;
 			this.fileSpam = fileSpam;
-			
+
 		}
 		initialize();
 		frame.setVisible(true);
@@ -58,7 +57,9 @@ public class MainGui {
 
 	private void initialize() {
 
-		// Gui Visuals
+		/**
+		 * Gui Visuals
+		 */
 		frame = new JFrame();
 		frame.setBounds(100, 100, 500, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,8 +102,20 @@ public class MainGui {
 
 		JButton btnReset = new JButton("Reset");
 		panel.add(btnReset);
-		
+
 		JButton btnConfigRules = new JButton("Config Rules");
+		panel.add(btnConfigRules);
+
+		JButton btnRunauto = new JButton("Run (Manual)");
+		panel.add(btnRunauto);
+
+		JButton btnRunTests = new JButton("Run (Auto)");
+		panel.add(btnRunTests);
+
+		/**
+		 * Action Listeners
+		 */
+
 		btnConfigRules.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (fileRules != null && fileHam != null && fileSpam != null
@@ -117,15 +130,6 @@ public class MainGui {
 				}
 			}
 		});
-		panel.add(btnConfigRules);
-
-		JButton btnRunauto = new JButton("Run (Manual)");
-		panel.add(btnRunauto);
-
-		JButton btnRunTests = new JButton("Run (Auto)");
-		panel.add(btnRunTests);
-
-		// Action Listeners
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -183,7 +187,6 @@ public class MainGui {
 
 		btnRunauto.addActionListener(new ActionListener() {
 
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Check if all files are loaded.
@@ -214,14 +217,14 @@ public class MainGui {
 
 			}
 		});
-		if (fileRules != null && fileHam != null && fileSpam != null ) {
-			lblNewLabel_1.setText("Path: " + fileRules.getPath() + "\n" + " Number Of Lines: "
-					+ fileRules.getNumberOfLines());
-			lblNewLabel_2.setText(
-					"Path: " + fileHam.getPath() + "\n" + " Number Of Lines: " + fileHam.getNumberOfLines());
-			lblNewLabel_3.setText(
-					"Path: " + fileSpam.getPath() + "\n" + " Number Of Lines: " + fileSpam.getNumberOfLines());
-			
+		if (fileRules != null && fileHam != null && fileSpam != null) {
+			lblNewLabel_1.setText(
+					"Path: " + fileRules.getPath() + "\n" + " Number Of Lines: " + fileRules.getNumberOfLines());
+			lblNewLabel_2
+					.setText("Path: " + fileHam.getPath() + "\n" + " Number Of Lines: " + fileHam.getNumberOfLines());
+			lblNewLabel_3
+					.setText("Path: " + fileSpam.getPath() + "\n" + " Number Of Lines: " + fileSpam.getNumberOfLines());
+
 		}
 	}
 
