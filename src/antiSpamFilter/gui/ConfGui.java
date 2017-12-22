@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -177,6 +179,7 @@ public class ConfGui {
 					fileRules.createNewRule(txtRuleName.getText(), textField1.getText());
 					txtRuleName.setText("Name");
 					textField1.setText("Weight");
+					JOptionPane.showMessageDialog(null, "New rule created!");
 					tabelUpdate();
 				}
 			}
@@ -191,6 +194,7 @@ public class ConfGui {
 					if (!value.equals(null)) {
 						String[] arrayDel = {value};
 						fileRules.deleteRules(arrayDel);
+						JOptionPane.showMessageDialog(null, "Rules deleted!");
 					}
 					tabelUpdate();
 				}
@@ -201,6 +205,7 @@ public class ConfGui {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fileRules.replaceFileContent();
+				JOptionPane.showMessageDialog(null, "File edited!");
 			}
 		});
 		table.getModel().addTableModelListener(new TableModelListener() {
@@ -214,6 +219,9 @@ public class ConfGui {
 						if (changed <= 5.0 && changed >= -5.0) {
 							fileRules.getHmapRules().get(table.getValueAt(e.getFirstRow(), 0)).setRuleWeight(table.getValueAt(e.getFirstRow(), e.getColumn()).toString());
 							tabelUpdate();
+							System.out.println(fileRules.getHmapRulesString());
+						} else {
+							JOptionPane.showMessageDialog(null, "Value not between -5 and 5.");
 						}
 					}
 				}

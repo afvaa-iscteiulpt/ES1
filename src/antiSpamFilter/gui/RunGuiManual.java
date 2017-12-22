@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -61,6 +62,7 @@ public class RunGuiManual {
 		btnGenerateRandomWeights.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fileRules.generateRandomWeightsForEachRule();
+				JOptionPane.showMessageDialog(null, "New weights created!");
 				tabelUpdate();
 			}
 		});
@@ -87,6 +89,7 @@ public class RunGuiManual {
 		btnSaveRulesTo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fileRules.replaceFileContent();
+				JOptionPane.showMessageDialog(null, "File edited!");
 			}
 		});
 		panel.add(btnSaveRulesTo);

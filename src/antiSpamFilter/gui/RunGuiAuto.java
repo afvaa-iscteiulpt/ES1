@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -39,6 +40,7 @@ public class RunGuiAuto {
 	private DefaultTableModel model;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
+	private boolean jmetalalreadyrunned = false;
 
 	public RunGuiAuto(FileRule fileRules, FileEmail fileHam, FileEmail fileSpam) {
 		this.fileRules = fileRules;
@@ -75,14 +77,18 @@ public class RunGuiAuto {
 		btnSaveRulesTo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fileRules.replaceFileContent();
+				JOptionPane.showMessageDialog(null, "File edited!");
 			}
 		});
 		
 		JButton btnCompileHv = new JButton("Compile Hv");
 		panel.add(btnCompileHv);
+		btnCompileHv.setEnabled(false);
 		
 		JButton btnCompileLatex = new JButton("Compile Latex");
 		panel.add(btnCompileLatex);
+		btnCompileLatex.setEnabled(false);
+		
 		panel.add(btnSaveRulesTo);
 		
 		JButton btnBack = new JButton("Back");
@@ -187,8 +193,13 @@ public class RunGuiAuto {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Run With Auto config
+				JOptionPane.showMessageDialog(null, "Running experiment!");
 				runExperiment();
-
+				jmetalalreadyrunned = true;
+				
+				btnCompileHv.setEnabled(true);
+				btnCompileLatex.setEnabled(true);
+				
 			}
 		});
 	}
@@ -216,6 +227,8 @@ public class RunGuiAuto {
 		lblNewLabel.setText("FP: " + FP); // actualizar os valores
 		lblNewLabel_1.setText("FN: " + FN); // actualizar os valores
 		tabelUpdate();
+		
+		JOptionPane.showMessageDialog(null, "Experiment complete!");
 	}
 
 }

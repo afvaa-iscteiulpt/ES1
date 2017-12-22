@@ -27,7 +27,9 @@ public class HVFile implements JmetalFiles {
 			String fullPath = current + "\\experimentDirectory\\AntiSpamStudy\\R\\HV.Boxplot.R";
 
 			//C:/PROGRA~1/R/R-3.4.3/bin/
-			Process p = Runtime.getRuntime().exec("cmd.exe /c Rscript.exe " + fullPath);
+			Process p = Runtime.getRuntime().exec("cmd.exe /c C:\\PROGRA~1\\R\\R-3.4.3\\bin\\Rscript.exe " + fullPath);
+			
+			System.out.println("cmd.exe /c C:\\PROGRA~1\\R\\R-3.4.3\\bin\\Rscript.exe " + fullPath);
 			
 			BufferedWriter writeer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
 			writeer.write("dir");
